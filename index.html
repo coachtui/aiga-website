@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIGA - Heavy Equipment Intelligence Platform</title>
+    <meta name="description" content="AI-powered inspection and predictive maintenance for construction equipment. Coming Q2 2025.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.6;
+            color: #fafafa;
+            background: #09090b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #27272a;
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(234, 179, 8, 0.03) 49%, rgba(234, 179, 8, 0.03) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(234, 179, 8, 0.03) 49%, rgba(234, 179, 8, 0.03) 51%, transparent 52%);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo-large {
+            margin-bottom: 40px;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        .hero-logo-large img {
+            max-width: 600px;
+            width: 90%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(234, 179, 8, 0.3));
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #fafafa;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: #eab308;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #a1a1aa;
+            margin-bottom: 48px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #09090b;
+            background: #eab308;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: #ca8a04;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(234, 179, 8, 0.3);
+        }
+
+        /* Vision Section */
+        .vision {
+            padding: 100px 0;
+            background: #09090b;
+        }
+
+        .vision h2 {
+            font-size: 42px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 64px;
+            color: #fafafa;
+            letter-spacing: -1px;
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+
+        .vision-card {
+            background: #18181b;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #27272a;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: 
+                linear-gradient(135deg, transparent 30%, rgba(234, 179, 8, 0.05) 100%);
+            border-radius: 0 0 0 100%;
+        }
+
+        .vision-card::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: -2px;
+            right: -2px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #eab308, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .vision-card:hover {
+            border-color: #eab308;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(234, 179, 8, 0.2);
+        }
+
+        .vision-card:hover::after {
+            opacity: 1;
+        }
+
+        .vision-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #eab308;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .vision-card h3::before {
+            content: '▸';
+            color: #eab308;
+            font-size: 28px;
+            margin-right: 12px;
+            font-weight: 900;
+        }
+
+        .vision-card p {
+            font-size: 16px;
+            color: #a1a1aa;
+            line-height: 1.7;
+        }
+
+        .status-badges {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 12px 28px;
+            background: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+            border: 2px solid rgba(234, 179, 8, 0.3);
+            border-radius: 0;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            clip-path: polygon(
+                8px 0, 100% 0, 100% calc(100% - 8px),
+                calc(100% - 8px) 100%, 0 100%, 0 8px
+            );
+        }
+
+        .badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            border-left: 2px solid #eab308;
+            border-top: 2px solid #eab308;
+        }
+
+        .badge::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid #eab308;
+            border-bottom: 2px solid #eab308;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: #18181b;
+            border-top: 1px solid #27272a;
+        }
+
+        .contact h2 {
+            font-size: 42px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #fafafa;
+            letter-spacing: -1px;
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #a1a1aa;
+            margin-bottom: 64px;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-email {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .contact-email a {
+            font-size: 28px;
+            font-weight: 700;
+            color: #eab308;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-email a:hover {
+            border-bottom-color: #eab308;
+        }
+
+        .contact-form {
+            background: #09090b;
+            padding: 48px;
+            border-radius: 12px;
+            border: 1px solid #27272a;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #eab308;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 16px;
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 8px;
+            color: #fafafa;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #eab308;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #52525b;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #09090b;
+            background: #eab308;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-button:hover {
+            background: #ca8a04;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(234, 179, 8, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            text-align: center;
+            border-top: 1px solid #27272a;
+            color: #71717a;
+            font-size: 14px;
+            background: #09090b;
+        }
+
+        /* Accent Lines */
+        .accent-line {
+            height: 3px;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    #eab308 0px,
+                    #eab308 20px,
+                    transparent 20px,
+                    transparent 40px
+                );
+            margin: 80px auto;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .accent-line::before,
+        .accent-line::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            width: 10px;
+            height: 9px;
+            background: #eab308;
+        }
+
+        .accent-line::before {
+            left: -15px;
+            clip-path: polygon(100% 0, 100% 100%, 0 50%);
+        }
+
+        .accent-line::after {
+            right: -15px;
+            clip-path: polygon(0 0, 0 100%, 100% 50%);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .vision h2,
+            .contact h2 {
+                font-size: 32px;
+            }
+
+            .vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 32px 24px;
+            }
+
+            .vision-card {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <img src="aiga-logo.png" alt="AIGA" class="logo-img">
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-logo-large">
+                <img src="aiga-logo.png" alt="AIGA - AI-Powered Equipment Intelligence">
+            </div>
+            <h1>Heavy Equipment Intelligence <span class="highlight">Reimagined</span></h1>
+            <p>AI-powered inspection and predictive maintenance for construction equipment</p>
+            <a href="#contact" class="cta-button">Get in Touch</a>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Vision Section -->
+    <section class="vision">
+        <div class="container">
+            <h2>Building the Future of Equipment Intelligence</h2>
+            
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <h3>AI-Powered Inspections</h3>
+                    <p>Computer vision technology that understands heavy equipment like an experienced mechanic, detecting issues before they become failures.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <h3>Predictive Maintenance</h3>
+                    <p>Advanced analytics that forecast equipment failures 30-90 days in advance, keeping your fleet running and your projects on schedule.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <h3>Built for Construction</h3>
+                    <p>Purpose-built for heavy civil contractors, understanding the unique demands of excavators, dozers, loaders, and the entire yellow iron fleet.</p>
+                </div>
+            </div>
+
+            <div class="status-badges">
+                <span class="badge">Coming Q2 2025</span>
+                <span class="badge">Currently in Pilot Phase</span>
+                <span class="badge">Building the Future</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p class="contact-subtitle">Interested in learning more about AIGA? We'd love to hear from you.</p>
+            
+            <div class="contact-content">
+                <div class="contact-email">
+                    <a href="mailto:tui@aigaai.com">tui@aigaai.com</a>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company (Optional)</label>
+                        <input type="text" id="company" name="company" placeholder="Your company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your fleet and what you're looking for..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AIGA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form handling (you'll want to connect this to an actual email service later)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                company: document.getElementById('company').value,
+                message: document.getElementById('message').value
+            };
+
+            // For now, just create a mailto link with the form data
+            const subject = encodeURIComponent('AIGA Contact Form Submission');
+            const body = encodeURIComponent(
+                `Name: ${formData.name}\n` +
+                `Email: ${formData.email}\n` +
+                `Company: ${formData.company}\n\n` +
+                `Message:\n${formData.message}`
+            );
+            
+            window.location.href = `mailto:tui@aigaai.com?subject=${subject}&body=${body}`;
+            
+            // Reset form
+            this.reset();
+            alert('Your message has been prepared. Your email client should open shortly.');
+        });
+    </script>
+</body>
+</html>
