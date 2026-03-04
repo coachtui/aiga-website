@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIGA - Construction Intelligence Platform</title>
-    <meta name="description" content="AI-powered inspection and predictive maintenance for construction equipment. Coming Q2 2025.">
+    <title>AIGA — Applied Intelligence for Real-World Industries</title>
+    <meta name="description" content="AIGA builds AI-powered software platforms that transform how industries analyze data, manage operations, and make critical decisions.">
     <style>
         * {
             margin: 0;
@@ -12,46 +12,134 @@
             box-sizing: border-box;
         }
 
+        /* ─── Ecosystem Design Tokens ─── */
+        :root {
+            /* AIGA umbrella brand */
+            --aiga-gold:         #EAB308;
+            --aiga-gold-dark:    #ca8a04;
+            --aiga-graphite:     #0B0B0D;
+            --aiga-surface:      #141417;
+            --aiga-border:       #242428;
+            --aiga-text:         #F3F4F6;
+            --aiga-muted:        #a1a1aa;
+
+            /* CRU platform */
+            --cru-teal:          #00CFA1;
+            --cru-teal-10:       rgba(0, 207, 161, 0.10);
+            --cru-teal-22:       rgba(0, 207, 161, 0.22);
+            --cru-teal-45:       rgba(0, 207, 161, 0.45);
+
+            /* DVRG platform — navy as structural anchor;
+               --dvrg-display is a readable blue derived from navy for
+               text/icons on dark surfaces */
+            --dvrg-navy:         #1F2A44;
+            --dvrg-display:      #5B82D4;
+            --dvrg-display-10:   rgba(91, 130, 212, 0.10);
+            --dvrg-display-22:   rgba(91, 130, 212, 0.22);
+            --dvrg-display-45:   rgba(91, 130, 212, 0.45);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
             line-height: 1.6;
-            color: #fafafa;
-            background: #09090b;
+            color: var(--aiga-text);
+            background: var(--aiga-graphite);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Header */
+        /* ─── Header ─── */
         header {
-            display: left;
-            height: 80px;
-            padding: 10px 0;
-            border-bottom: 2px solid #27272a;
-            background: rgba(24, 24, 27, 0.8);
-            backdrop-filter: blur(10px);
+            height: 72px;
+            padding: 0;
+            border-bottom: 1px solid #242428;
+            background: rgba(11, 11, 13, 0.85);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
         .logo-img {
-            margin-top: 5px;
-            height: 50px;
+            height: 42px;
             width: auto;
-            transition: transform 0.5s ease;
+            transition: opacity 0.3s ease;
         }
 
         .logo-img:hover {
-            transform: scale(1.05);
+            opacity: 0.8;
         }
 
-        /* Hero Section */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 600;
+            color: #a1a1aa;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #eab308;
+        }
+
+        .nav-cta {
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #09090b !important;
+            background: #eab308;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: background 0.2s ease, transform 0.2s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: #ca8a04 !important;
+            color: #09090b !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #a1a1aa;
+            transition: all 0.3s ease;
+        }
+
+        /* ─── Hero ─── */
         .hero {
-            padding: 80px 0 100px;
+            padding: 96px 0 112px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -60,15 +148,11 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(45deg, transparent 48%, rgba(234, 179, 8, 0.03) 49%, rgba(234, 179, 8, 0.03) 51%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, rgba(234, 179, 8, 0.03) 49%, rgba(234, 179, 8, 0.03) 51%, transparent 52%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                linear-gradient(45deg, transparent 48%, rgba(234, 179, 8, 0.025) 49%, rgba(234, 179, 8, 0.025) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(234, 179, 8, 0.025) 49%, rgba(234, 179, 8, 0.025) 51%, transparent 52%);
             background-size: 40px 40px;
-            opacity: 0.3;
             z-index: 0;
         }
 
@@ -78,54 +162,75 @@
         }
 
         .hero-logo-large {
-            margin-bottom: 40px;
-            animation: fadeInScale 1s ease-out;
+            margin-bottom: 48px;
+            animation: fadeInScale 0.9s ease-out;
         }
 
         .hero-logo-large img {
-            max-width: 600px;
-            width: 90%;
+            max-width: 360px;
+            width: 60%;
             height: auto;
-            filter: drop-shadow(0 10px 30px rgba(234, 179, 8, 0.3));
+            filter: drop-shadow(0 8px 24px rgba(234, 179, 8, 0.25));
         }
 
         @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.93); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #eab308;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         .hero h1 {
-            font-size: 64px;
+            font-size: 62px;
             font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
+            line-height: 1.08;
+            margin-bottom: 28px;
             color: #fafafa;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
+            animation: fadeInUp 0.8s ease-out 0.35s both;
         }
 
         .hero h1 .highlight {
             color: #eab308;
         }
 
-        .hero p {
-            font-size: 24px;
+        .hero-sub {
+            font-size: 20px;
             color: #a1a1aa;
-            margin-bottom: 48px;
-            max-width: 700px;
+            margin-bottom: 52px;
+            max-width: 640px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.65;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.65s both;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 18px 48px;
-            font-size: 18px;
+            padding: 16px 40px;
+            font-size: 15px;
             font-weight: 700;
             color: #09090b;
             background: #eab308;
@@ -133,7 +238,7 @@
             border-radius: 8px;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -141,311 +246,68 @@
         .cta-button:hover {
             background: #ca8a04;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(234, 179, 8, 0.3);
+            box-shadow: 0 10px 28px rgba(234, 179, 8, 0.3);
         }
 
-        /* Vision Section */
-        .vision {
-            padding: 100px 0;
-            background: #09090b;
-        }
-
-        .vision h2 {
-            font-size: 42px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 64px;
-            color: #fafafa;
-            letter-spacing: -1px;
-        }
-
-        .vision-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-bottom: 80px;
-        }
-
-        .vision-card {
-            background: #18181b;
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #27272a;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vision-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: 
-                linear-gradient(135deg, transparent 30%, rgba(234, 179, 8, 0.05) 100%);
-            border-radius: 0 0 0 100%;
-        }
-
-        .vision-card::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: -2px;
-            right: -2px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #eab308, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .vision-card:hover {
-            border-color: #eab308;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(234, 179, 8, 0.2);
-        }
-
-        .vision-card:hover::after {
-            opacity: 1;
-        }
-
-        .vision-card h3 {
-            font-size: 24px;
+        .cta-button-outline {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 15px;
             font-weight: 700;
-            margin-bottom: 16px;
             color: #eab308;
+            background: transparent;
+            border: 2px solid rgba(234, 179, 8, 0.4);
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            position: relative;
-            padding-left: 0;
         }
 
-        .vision-card h3::before {
-            content: '▸';
+        .cta-button-outline:hover {
+            border-color: #eab308;
+            background: rgba(234, 179, 8, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* ─── Section Shared ─── */
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
             color: #eab308;
-            font-size: 28px;
-            margin-right: 12px;
-            font-weight: 900;
+            margin-bottom: 16px;
         }
 
-        .vision-card p {
-            font-size: 16px;
+        .section-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: #fafafa;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 17px;
             color: #a1a1aa;
+            max-width: 560px;
             line-height: 1.7;
         }
 
-        .status-badges {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            padding: 12px 28px;
-            background: rgba(234, 179, 8, 0.1);
-            color: #eab308;
-            border: 2px solid rgba(234, 179, 8, 0.3);
-            border-radius: 0;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            clip-path: polygon(
-                8px 0, 100% 0, 100% calc(100% - 8px),
-                calc(100% - 8px) 100%, 0 100%, 0 8px
-            );
-        }
-
-        .badge::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 8px;
-            border-left: 2px solid #eab308;
-            border-top: 2px solid #eab308;
-        }
-
-        .badge::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 8px;
-            height: 8px;
-            border-right: 2px solid #eab308;
-            border-bottom: 2px solid #eab308;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background: #18181b;
-            border-top: 1px solid #27272a;
-        }
-
-        .contact h2 {
-            font-size: 42px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 16px;
-            color: #fafafa;
-            letter-spacing: -1px;
-        }
-
-        .contact-subtitle {
-            text-align: center;
-            font-size: 18px;
-            color: #a1a1aa;
-            margin-bottom: 64px;
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-email {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .contact-email a {
-            font-size: 28px;
-            font-weight: 700;
-            color: #eab308;
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-
-        .contact-email a:hover {
-            border-bottom-color: #eab308;
-        }
-
-        .contact-form {
-            background: #09090b;
-            padding: 48px;
-            border-radius: 12px;
-            border: 1px solid #27272a;
-        }
-
-        .form-group {
-            margin-bottom: 28px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #eab308;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            font-size: 16px;
-            background: #18181b;
-            border: 1px solid #27272a;
-            border-radius: 8px;
-            color: #fafafa;
-            font-family: inherit;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #eab308;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #52525b;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 16px;
-            font-size: 16px;
-            font-weight: 700;
-            color: #09090b;
-            background: #eab308;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .submit-button:hover {
-            background: #ca8a04;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(234, 179, 8, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            padding: 0px 0;
-            text-align: center;
-            border-top: 1px solid #27272a;
-            color: #71717a;
-            font-size: 14px;
-            background: #09090b;
-        }
-
-        .footer-logo {
-            margin-top:20px;
-        }
-
-        .footer-logo img {
-            height: 50px;
-            width: auto;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-logo img:hover {
-            opacity: 1;
-        }
-
-        .powered-by {
-            padding-top: 12px;
-            font-size: 12px;
-            color: #52525b;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Accent Lines */
+        /* ─── Accent Line ─── */
         .accent-line {
-            height: 3px;
-            background: 
-                repeating-linear-gradient(
-                    90deg,
-                    #eab308 0px,
-                    #eab308 20px,
-                    transparent 20px,
-                    transparent 40px
-                );
-            margin: 80px auto;
-            max-width: 600px;
+            height: 2px;
+            background: repeating-linear-gradient(
+                90deg,
+                #eab308 0px, #eab308 16px,
+                transparent 16px, transparent 32px
+            );
+            margin: 0 auto;
+            max-width: 1000px;
             position: relative;
+            opacity: 0.5;
         }
 
         .accent-line::before,
@@ -453,111 +315,995 @@
             content: '';
             position: absolute;
             top: -3px;
-            width: 10px;
-            height: 9px;
+            width: 8px; height: 8px;
             background: #eab308;
         }
 
         .accent-line::before {
-            left: -15px;
+            left: -12px;
             clip-path: polygon(100% 0, 100% 100%, 0 50%);
         }
 
         .accent-line::after {
-            right: -15px;
+            right: -12px;
             clip-path: polygon(0 0, 0 100%, 100% 50%);
         }
 
-        /* Responsive */
+        /* ─── Platforms Section ─── */
+        .platforms {
+            padding: 100px 0;
+            background: var(--aiga-graphite);
+        }
+
+        .platforms-header {
+            margin-bottom: 64px;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .platform-card {
+            background: #141417;
+            border: 1px solid #242428;
+            border-radius: 12px;
+            padding: 40px 36px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #eab308, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .platform-card:hover {
+            border-color: rgba(234, 179, 8, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(234, 179, 8, 0.1);
+        }
+
+        .platform-card:hover::before {
+            opacity: 1;
+        }
+
+        .platform-card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .platform-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #eab308;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .status-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .status-tag::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .status-live {
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.25);
+        }
+
+        .status-live::before {
+            background: #4ade80;
+            box-shadow: 0 0 6px #4ade80;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.4; }
+        }
+
+        .status-dev {
+            background: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+            border: 1px solid rgba(234, 179, 8, 0.25);
+        }
+
+        .status-dev::before {
+            background: #eab308;
+        }
+
+        .platform-desc {
+            font-size: 15px;
+            color: #a1a1aa;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .platform-industry {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #52525b;
+            padding-top: 8px;
+            border-top: 1px solid #242428;
+        }
+
+        /* ─── Platform Card — CRU variant ─── */
+        .platform-card--cru .platform-name {
+            color: var(--cru-teal);
+        }
+
+        .platform-card--cru::before {
+            background: linear-gradient(90deg, transparent, var(--cru-teal), transparent);
+        }
+
+        .platform-card--cru:hover {
+            border-color: var(--cru-teal-45);
+            box-shadow: 0 16px 48px var(--cru-teal-22);
+            transform: scale(1.02);
+        }
+
+        /* ─── Platform Card — DVRG variant ─── */
+        .platform-card--dvrg .platform-name {
+            color: var(--dvrg-display);
+        }
+
+        .platform-card--dvrg::before {
+            background: linear-gradient(90deg, transparent, var(--dvrg-display), transparent);
+        }
+
+        .platform-card--dvrg:hover {
+            border-color: var(--dvrg-display-45);
+            box-shadow: 0 16px 48px var(--dvrg-display-22);
+            transform: scale(1.02);
+        }
+
+        /* ─── Platform Visit Button ─── */
+        .platform-visit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px;
+            letter-spacing: 0.75px;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+            align-self: flex-start;
+            margin-top: 4px;
+        }
+
+        .platform-visit-btn svg {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .platform-visit-btn:hover svg {
+            transform: translate(2px, -2px);
+        }
+
+        .platform-visit-btn--cru {
+            color: var(--cru-teal);
+            background: var(--cru-teal-10);
+            border: 1px solid rgba(0, 207, 161, 0.25);
+        }
+
+        .platform-visit-btn--cru:hover {
+            background: var(--cru-teal-22);
+            border-color: var(--cru-teal-45);
+        }
+
+        .platform-visit-btn--dvrg {
+            color: var(--dvrg-display);
+            background: var(--dvrg-display-10);
+            border: 1px solid rgba(91, 130, 212, 0.25);
+        }
+
+        .platform-visit-btn--dvrg:hover {
+            background: var(--dvrg-display-22);
+            border-color: var(--dvrg-display-45);
+        }
+
+        /* ─── Capabilities Section ─── */
+        .capabilities {
+            padding: 100px 0;
+            background: #141417;
+            border-top: 1px solid #242428;
+            border-bottom: 1px solid #242428;
+        }
+
+        .capabilities-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .capabilities-intro {
+            position: sticky;
+            top: 100px;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .capability-card {
+            background: #141417;
+            border: 1px solid #242428;
+            border-radius: 10px;
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #eab308, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .capability-card:hover {
+            border-color: rgba(234, 179, 8, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(234, 179, 8, 0.08);
+        }
+
+        .capability-card:hover::after {
+            opacity: 1;
+        }
+
+        .capability-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .capability-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fafafa;
+            margin-bottom: 10px;
+            letter-spacing: -0.2px;
+        }
+
+        .capability-card p {
+            font-size: 14px;
+            color: #71717a;
+            line-height: 1.7;
+        }
+
+        /* ─── Why AIGA Section ─── */
+        .why-aiga {
+            padding: 100px 0;
+            background: var(--aiga-graphite);
+        }
+
+        .why-aiga-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .why-aiga-content .section-sub {
+            max-width: 100%;
+            margin-bottom: 32px;
+        }
+
+        .why-aiga-content p + p {
+            margin-top: 20px;
+        }
+
+        .why-aiga-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stat-item {
+            background: #141417;
+            border: 1px solid #242428;
+            border-left: 3px solid #eab308;
+            border-radius: 8px;
+            padding: 24px 28px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: #141417;
+            border-color: rgba(234, 179, 8, 0.5);
+            border-left-color: #eab308;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #eab308;
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #71717a;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ─── Pipeline Section ─── */
+        .pipeline {
+            padding: 100px 0;
+            background: #141417;
+            border-top: 1px solid #242428;
+        }
+
+        .pipeline-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .pipeline-header .section-sub {
+            margin: 0 auto;
+        }
+
+        .pipeline-track {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pipeline-track::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, #eab308, #eab30840, transparent);
+        }
+
+        .pipeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 32px;
+            padding: 28px 0;
+            position: relative;
+        }
+
+        .pipeline-item + .pipeline-item {
+            border-top: 1px solid #242428;
+        }
+
+        .pipeline-dot {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pipeline-dot-live {
+            background: rgba(34, 197, 94, 0.15);
+            border: 2px solid #4ade80;
+            color: #4ade80;
+        }
+
+        .pipeline-dot-dev {
+            background: rgba(234, 179, 8, 0.12);
+            border: 2px solid rgba(234, 179, 8, 0.5);
+            color: #eab308;
+        }
+
+        .pipeline-dot-planned {
+            background: rgba(82, 82, 91, 0.15);
+            border: 2px solid #3f3f46;
+            color: #52525b;
+        }
+
+        .pipeline-info {
+            flex: 1;
+            padding-top: 10px;
+        }
+
+        .pipeline-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fafafa;
+            margin-bottom: 4px;
+        }
+
+        .pipeline-desc {
+            font-size: 14px;
+            color: #71717a;
+            line-height: 1.6;
+        }
+
+        .pipeline-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        /* ─── Contact Section ─── */
+        .contact {
+            padding: 100px 0;
+            background: #141417;
+            border-top: 1px solid #242428;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-intro .section-title {
+            margin-bottom: 20px;
+        }
+
+        .contact-intro .section-sub {
+            margin-bottom: 40px;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: rgba(234, 179, 8, 0.06);
+            border: 1px solid rgba(234, 179, 8, 0.15);
+            border-radius: 8px;
+            font-size: 14px;
+            color: #a1a1aa;
+        }
+
+        .contact-option-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #eab308;
+            flex-shrink: 0;
+        }
+
+        .contact-email-link {
+            font-size: 18px;
+            font-weight: 700;
+            color: #eab308;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+            display: inline-block;
+            margin-top: 28px;
+        }
+
+        .contact-email-link:hover {
+            border-bottom-color: #eab308;
+        }
+
+        .contact-form {
+            background: var(--aiga-graphite);
+            padding: 44px;
+            border-radius: 12px;
+            border: 1px solid #242428;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #eab308;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 15px;
+            background: #141417;
+            border: 1px solid #242428;
+            border-radius: 8px;
+            color: #fafafa;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+            appearance: none;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #eab308;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #3f3f46;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #09090b;
+            background: #eab308;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-button:hover {
+            background: #ca8a04;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(234, 179, 8, 0.3);
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            background: var(--aiga-graphite);
+            border-top: 1px solid #242428;
+            padding: 40px 0 28px;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .footer-logo img {
+            height: 44px;
+            width: auto;
+            opacity: 0.65;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            opacity: 1;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #52525b;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #eab308;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: #3f3f46;
+            line-height: 1.8;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 1024px) {
+            .capabilities-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .capabilities-intro {
+                position: static;
+            }
+
+            .why-aiga-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
         @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0; right: 0;
+                background: #141417;
+                border-bottom: 1px solid #242428;
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            nav.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
             .hero h1 {
-                font-size: 40px;
+                font-size: 38px;
+                letter-spacing: -1px;
             }
 
-            .hero p {
-                font-size: 18px;
+            .hero-sub {
+                font-size: 16px;
             }
 
-            .vision h2,
-            .contact h2 {
-                font-size: 32px;
+            .hero-logo-large img {
+                width: 75%;
             }
 
-            .vision-grid {
+            .section-title {
+                font-size: 30px;
+            }
+
+            .platforms-grid {
                 grid-template-columns: 1fr;
             }
 
-            .contact-form {
-                padding: 32px 24px;
+            .capabilities-grid {
+                grid-template-columns: 1fr;
             }
 
-            .vision-card {
-                padding: 32px 24px;
+            .pipeline-track::before {
+                display: none;
+            }
+
+            .contact-form {
+                padding: 28px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- ─── Header ─── -->
     <header>
         <div class="container">
-            <img src="aiga-logo.png" alt="AIGA" class="logo-img">
+            <div class="header-inner">
+                <img src="aiga-logo.png" alt="AIGA" class="logo-img">
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+                <nav id="mainNav">
+                    <a href="#platforms">Platforms</a>
+                    <a href="#capabilities">Capabilities</a>
+                    <a href="#pipeline">Roadmap</a>
+                    <a href="#contact" class="nav-cta">Work With Us</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ─── Hero ─── -->
     <section class="hero">
         <div class="container">
             <div class="hero-logo-large">
-                <img src="aiga-logo.png" alt="AIGA - AI-Powered Equipment Intelligence">
+                <img src="aiga-logo.png" alt="AIGA — Applied Intelligence Group">
             </div>
-            <h1>Construction Operations <span class="highlight">Reimagined</span></h1>
-            <p>AI-powered software for inspections, workflows, and crews—built by construction professionals, for the realities of the jobsite.</p>
-            <a href="#contact" class="cta-button">Get in Touch</a>
+            <span class="hero-eyebrow">Applied Intelligence Group</span>
+            <h1>Applied Intelligence<br>for <span class="highlight">Real-World Industries</span></h1>
+            <p class="hero-sub">AIGA builds AI-powered software platforms that transform how industries analyze data, manage operations, and make critical decisions.</p>
+            <div class="hero-ctas">
+                <a href="#platforms" class="cta-button">Explore Platforms</a>
+                <a href="#contact" class="cta-button-outline">Partner With Us</a>
+            </div>
         </div>
     </section>
 
     <div class="accent-line"></div>
 
-    <!-- Vision Section -->
-    <section class="vision">
+    <!-- ─── Platforms Section ─── -->
+    <section class="platforms" id="platforms">
         <div class="container">
-            <h2>Building the Future of Construction Operations</h2>
-            
-            <div class="vision-grid">
-                <div class="vision-card">
-                    <h3>AI-Powered Inspections</h3>
-                    <p>Computer vision built from real jobsite inspections. Automatically identify damage, wear, and safety issues on heavy equipment before they become downtime events.</p>
-                </div>
-                
-                <div class="vision-card">
-                    <h3>Predictive Maintenance</h3>
-                    <p>Advanced analytics that forecast equipment failures 30-90 days in advance, keeping your fleet running and your projects on schedule.</p>
-                </div>
-                
-                <div class="vision-card">
-                    <h3>Built for Construction</h3>
-                    <p>Designed by construction professionals, for real-world operations. Purpose-built for heavy civil environments, understanding the demands of equipment, crews, schedules, and jobsite realities.</p>
-                </div>
+            <div class="platforms-header">
+                <p class="section-label">Our Platforms</p>
+                <h2 class="section-title">A Growing Ecosystem of<br>Specialized Software</h2>
+                <p class="section-sub">Each AIGA platform is purpose-built for a specific industry — combining domain expertise with applied AI to deliver tools that professionals actually use.</p>
             </div>
 
-            <div class="status-badges">
-                <span class="badge">Coming Q2 2026</span>
-                <span class="badge">Currently in Pilot Phase</span>
-                <span class="badge">Building the Future</span>
+            <div class="platforms-grid">
+
+                <div class="platform-card platform-card--cru">
+                    <div class="platform-card-top">
+                        <span class="platform-name">CRU</span>
+                        <span class="status-tag status-live">Live</span>
+                    </div>
+                    <p class="platform-desc">AI-powered workforce coordination and scheduling for construction teams.</p>
+                    <p class="platform-industry">Construction &nbsp;/&nbsp; Workforce Operations</p>
+                    <a href="https://www.cruwork.app" target="_blank" rel="noopener noreferrer" class="platform-visit-btn platform-visit-btn--cru">
+                        Visit Platform
+                        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+
+                <div class="platform-card platform-card--dvrg">
+                    <div class="platform-card-top">
+                        <span class="platform-name">DVRG</span>
+                        <span class="status-tag status-live">Live</span>
+                    </div>
+                    <p class="platform-desc">Institutional-grade equity research and capital intelligence platform.</p>
+                    <p class="platform-industry">Finance &nbsp;/&nbsp; Investment Research</p>
+                    <a href="https://www.dvrg.io" target="_blank" rel="noopener noreferrer" class="platform-visit-btn platform-visit-btn--dvrg">
+                        Visit Platform
+                        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+
+                <div class="platform-card">
+                    <div class="platform-card-top">
+                        <span class="platform-name">AIGA Inspect</span>
+                        <span class="status-tag status-dev">In Development</span>
+                    </div>
+                    <p class="platform-desc">Computer vision inspection and predictive maintenance platform for heavy equipment fleets. Automatically identifies damage, wear, and failure risk before it becomes costly downtime.</p>
+                    <p class="platform-industry">Construction &nbsp;/&nbsp; Equipment Intelligence</p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <div class="accent-line"></div>
+
+    <!-- ─── Capabilities Section ─── -->
+    <section class="capabilities" id="capabilities">
+        <div class="container">
+            <div class="capabilities-layout">
+
+                <div class="capabilities-intro">
+                    <p class="section-label">What We Build</p>
+                    <h2 class="section-title">Four Core<br>Disciplines</h2>
+                    <p class="section-sub">AIGA platforms are built around four foundational technology disciplines. Every product we ship draws from one or more of these areas.</p>
+                </div>
+
+                <div class="capabilities-grid">
+
+                    <div class="capability-card">
+                        <span class="capability-icon">⚙️</span>
+                        <h3>Operational Intelligence</h3>
+                        <p>AI systems designed to coordinate and manage complex real-world operations — from crew logistics to equipment deployment.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <span class="capability-icon">📊</span>
+                        <h3>Financial Intelligence</h3>
+                        <p>Data-driven tools for investment analysis, capital allocation, and financial modeling at institutional scale.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <span class="capability-icon">🔮</span>
+                        <h3>Predictive Analytics</h3>
+                        <p>Forecasting systems that identify equipment failures, market risks, and operational bottlenecks before they surface.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <span class="capability-icon">🧠</span>
+                        <h3>Applied AI</h3>
+                        <p>Domain-specific AI models trained on real-world data from the industries we serve — not generic foundation models repurposed for business.</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Why AIGA Section ─── -->
+    <section class="why-aiga" id="why">
+        <div class="container">
+            <div class="why-aiga-layout">
+
+                <div class="why-aiga-content">
+                    <p class="section-label">Why AIGA</p>
+                    <h2 class="section-title">Built by Operators</h2>
+                    <p class="section-sub">AIGA platforms are designed by professionals who have operated inside the industries they build for.</p>
+                    <p class="section-sub" style="margin-top: 16px;">Our software is developed from real operational experience — not theoretical product design. We understand the data, the decisions, and the constraints that practitioners face every day.</p>
+                    <p class="section-sub" style="margin-top: 16px;">That difference is visible in every feature we ship.</p>
+                </div>
+
+                <div class="why-aiga-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Live Platforms</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Platforms in Development</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Industries Targeted</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Room to Grow</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- ─── Pipeline Section ─── -->
+    <section class="pipeline" id="pipeline">
+        <div class="container">
+            <div class="pipeline-header">
+                <p class="section-label">Platform Development</p>
+                <h2 class="section-title">Roadmap</h2>
+                <p class="section-sub">AIGA operates a long-term platform development program. New platforms are designed, validated with domain experts, and shipped.</p>
+            </div>
+
+            <div class="pipeline-track">
+
+                <div class="pipeline-item">
+                    <div class="pipeline-dot pipeline-dot-live">Live</div>
+                    <div class="pipeline-info">
+                        <div class="pipeline-name">CRU</div>
+                        <div class="pipeline-desc">AI-powered construction workforce management platform.</div>
+                        <span class="status-tag status-live">Live</span>
+                    </div>
+                </div>
+
+                <div class="pipeline-item">
+                    <div class="pipeline-dot pipeline-dot-live">Live</div>
+                    <div class="pipeline-info">
+                        <div class="pipeline-name">DVRG</div>
+                        <div class="pipeline-desc">Institutional-grade equity research and capital analysis.</div>
+                        <span class="status-tag status-live">Live</span>
+                    </div>
+                </div>
+
+                <div class="pipeline-item">
+                    <div class="pipeline-dot pipeline-dot-dev">Dev</div>
+                    <div class="pipeline-info">
+                        <div class="pipeline-name">AIGA Inspect</div>
+                        <div class="pipeline-desc">Computer vision inspection and predictive maintenance for equipment fleets.</div>
+                        <span class="status-tag status-dev">In Development</span>
+                    </div>
+                </div>
+
+                <div class="pipeline-item">
+                    <div class="pipeline-dot pipeline-dot-planned">TBD</div>
+                    <div class="pipeline-info">
+                        <div class="pipeline-name">Future Platforms</div>
+                        <div class="pipeline-desc">Additional platforms currently in research and scoping. AIGA continuously identifies high-value industry problems that AI can solve.</div>
+                        <span class="status-tag" style="background: rgba(82,82,91,0.15); color: #52525b; border: 1px solid #3f3f46;">Planned</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Contact Section ─── -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2>Get in Touch</h2>
-            <p class="contact-subtitle">Interested in learning more about AIGA? We'd love to hear from you.</p>
-            
-            <div class="contact-content">
-                <div class="contact-email">
-                    <a href="mailto:info@aigaai.com">info@aigaai.com</a>
+            <div class="contact-layout">
+
+                <div class="contact-intro">
+                    <p class="section-label">Get Involved</p>
+                    <h2 class="section-title">Work With Us</h2>
+                    <p class="section-sub">Whether you're looking to deploy AIGA platforms in your organization or explore a strategic partnership, we want to hear from you.</p>
+
+                    <div class="contact-options">
+                        <div class="contact-option">
+                            <div class="contact-option-dot"></div>
+                            Enterprise partnerships
+                        </div>
+                        <div class="contact-option">
+                            <div class="contact-option-dot"></div>
+                            Early adopter programs
+                        </div>
+                        <div class="contact-option">
+                            <div class="contact-option-dot"></div>
+                            Pilot deployments
+                        </div>
+                    </div>
+
+                    <a href="mailto:info@aigaai.com" class="contact-email-link">info@aigaai.com</a>
                 </div>
 
                 <form class="contact-form" id="contactForm">
@@ -572,60 +1318,91 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="company">Company (Optional)</label>
-                        <input type="text" id="company" name="company" placeholder="Your company">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Your organization">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">Area of Interest</label>
+                        <select id="interest" name="interest">
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="cru">CRU — Construction Workforce</option>
+                            <option value="dvrg">DVRG — Investment Research</option>
+                            <option value="inspect">AIGA Inspect — Equipment Intelligence</option>
+                            <option value="partnership">Strategic Partnership</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Tell us about your fleet and what you're looking for..." required></textarea>
+                        <textarea id="message" name="message" placeholder="Tell us about your organization and what you're looking to solve..." required></textarea>
                     </div>
 
                     <button type="submit" class="submit-button">Send Message</button>
                 </form>
+
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ─── Footer ─── -->
     <footer>
         <div class="container">
-            <div class="footer-logo">
-                <img src="aiga-logo.png" alt="AIGA">
+            <div class="footer-inner">
+                <div class="footer-logo">
+                    <img src="aiga-logo.png" alt="AIGA">
+                </div>
+                <div class="footer-links">
+                    <a href="#platforms">Platforms</a>
+                    <a href="#capabilities">Capabilities</a>
+                    <a href="#pipeline">Roadmap</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; 2026 AIGA LLC. All rights reserved.</p>
+                    <p>AIGA® and related product names and logos are trademarks of AIGA LLC.</p>
+                </div>
             </div>
-            <p class="powered-by">Powered by AIGA</p>
-            <p>&copy; 2025 AIGA LLC. All rights reserved.</p>
-            <p>AIGA® and related product names and logos are trademarks of AIGA LLC.</p>
         </div>
     </footer>
 
     <script>
-        // Simple form handling (you'll want to connect this to an actual email service later)
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('open');
+        });
+
+        // Close nav on link click
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mainNav.classList.remove('open'));
+        });
+
+        // Contact form handler
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                message: document.getElementById('message').value
-            };
 
-            // For now, just create a mailto link with the form data
-            const subject = encodeURIComponent('AIGA Contact Form Submission');
+            const name     = document.getElementById('name').value;
+            const email    = document.getElementById('email').value;
+            const company  = document.getElementById('company').value;
+            const interest = document.getElementById('interest').value;
+            const message  = document.getElementById('message').value;
+
+            const subject = encodeURIComponent('AIGA Partnership Inquiry');
             const body = encodeURIComponent(
-                `Name: ${formData.name}\n` +
-                `Email: ${formData.email}\n` +
-                `Company: ${formData.company}\n\n` +
-                `Message:\n${formData.message}`
+                `Name: ${name}\n` +
+                `Email: ${email}\n` +
+                `Company: ${company}\n` +
+                `Interest: ${interest}\n\n` +
+                `Message:\n${message}`
             );
-            
+
             window.location.href = `mailto:info@aigaai.com?subject=${subject}&body=${body}`;
-            
-            // Reset form
             this.reset();
-            alert('Your message has been prepared. Your email client should open shortly.');
         });
     </script>
+
 </body>
 </html>
