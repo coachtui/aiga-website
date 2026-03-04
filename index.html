@@ -1306,7 +1306,7 @@
                     <a href="mailto:info@aigaai.com" class="contact-email-link">info@aigaai.com</a>
                 </div>
 
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mreanrbo" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -1380,28 +1380,6 @@
             link.addEventListener('click', () => mainNav.classList.remove('open'));
         });
 
-        // Contact form handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const name     = document.getElementById('name').value;
-            const email    = document.getElementById('email').value;
-            const company  = document.getElementById('company').value;
-            const interest = document.getElementById('interest').value;
-            const message  = document.getElementById('message').value;
-
-            const subject = encodeURIComponent('AIGA Partnership Inquiry');
-            const body = encodeURIComponent(
-                `Name: ${name}\n` +
-                `Email: ${email}\n` +
-                `Company: ${company}\n` +
-                `Interest: ${interest}\n\n` +
-                `Message:\n${message}`
-            );
-
-            window.location.href = `mailto:info@aigaai.com?subject=${subject}&body=${body}`;
-            this.reset();
-        });
     </script>
 
 </body>
