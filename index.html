@@ -37,6 +37,12 @@
             --dvrg-display-10:   rgba(91, 130, 212, 0.10);
             --dvrg-display-22:   rgba(91, 130, 212, 0.22);
             --dvrg-display-45:   rgba(91, 130, 212, 0.45);
+
+            /* Operator platform */
+            --operator-amber:    #c9973a;
+            --operator-amber-10: rgba(201, 151, 58, 0.10);
+            --operator-amber-22: rgba(201, 151, 58, 0.22);
+            --operator-amber-45: rgba(201, 151, 58, 0.45);
         }
 
         body {
@@ -471,6 +477,32 @@
             border-color: var(--cru-teal-45);
             box-shadow: 0 16px 48px var(--cru-teal-22);
             transform: scale(1.02);
+        }
+
+        /* ─── Platform Card — Operator variant ─── */
+        .platform-card--operator .platform-name {
+            color: var(--operator-amber);
+        }
+
+        .platform-card--operator::before {
+            background: linear-gradient(90deg, transparent, var(--operator-amber), transparent);
+        }
+
+        .platform-card--operator:hover {
+            border-color: var(--operator-amber-45);
+            box-shadow: 0 16px 48px var(--operator-amber-22);
+            transform: scale(1.02);
+        }
+
+        .platform-visit-btn--operator {
+            color: var(--operator-amber);
+            background: var(--operator-amber-10);
+            border: 1px solid rgba(201, 151, 58, 0.25);
+        }
+
+        .platform-visit-btn--operator:hover {
+            background: var(--operator-amber-22);
+            border-color: var(--operator-amber-45);
         }
 
         /* ─── Platform Card — DVRG variant ─── */
@@ -1131,6 +1163,19 @@
                     </a>
                 </div>
 
+                <div class="platform-card platform-card--operator">
+                    <div class="platform-card-top">
+                        <span class="platform-name">Operator</span>
+                        <span class="status-tag status-live">Live</span>
+                    </div>
+                    <p class="platform-desc">The only AI course taught entirely through conversation. No videos, no slides — just you and an AI that asks questions back, corrects your thinking, and won't move on until you get it.</p>
+                    <p class="platform-industry">Education &nbsp;/&nbsp; AI Literacy</p>
+                    <a href="https://buildyouroperator.com" target="_blank" rel="noopener noreferrer" class="platform-visit-btn platform-visit-btn--operator">
+                        Visit Platform
+                        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+
                 <div class="platform-card">
                     <div class="platform-card-top">
                         <span class="platform-name">AIGA Inspect</span>
@@ -1204,7 +1249,7 @@
 
                 <div class="why-aiga-stats">
                     <div class="stat-item">
-                        <div class="stat-number">2</div>
+                        <div class="stat-number">3</div>
                         <div class="stat-label">Live Platforms</div>
                     </div>
                     <div class="stat-item">
@@ -1212,7 +1257,7 @@
                         <div class="stat-label">Platforms in Development</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">3</div>
+                        <div class="stat-number">4</div>
                         <div class="stat-label">Industries Targeted</div>
                     </div>
                     <div class="stat-item">
@@ -1252,6 +1297,15 @@
                     <div class="pipeline-info">
                         <div class="pipeline-name">DVRG</div>
                         <div class="pipeline-desc">Institutional-grade equity research and capital analysis.</div>
+                        <span class="status-tag status-live">Live</span>
+                    </div>
+                </div>
+
+                <div class="pipeline-item">
+                    <div class="pipeline-dot pipeline-dot-live">Live</div>
+                    <div class="pipeline-info">
+                        <div class="pipeline-name">Operator</div>
+                        <div class="pipeline-desc">Conversation-based AI education platform. Founding cohort open now at buildyouroperator.com.</div>
                         <span class="status-tag status-live">Live</span>
                     </div>
                 </div>
@@ -1328,6 +1382,7 @@
                             <option value="" disabled selected>Select an option</option>
                             <option value="cru">CRU — Construction Workforce</option>
                             <option value="dvrg">DVRG — Investment Research</option>
+                            <option value="operator">Operator — AI Education</option>
                             <option value="inspect">AIGA Inspect — Equipment Intelligence</option>
                             <option value="partnership">Strategic Partnership</option>
                             <option value="other">Other</option>
