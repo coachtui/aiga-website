@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — AIGA</title>
+    <meta name="description" content="Privacy Policy for AIGA LLC and aigaai.com.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:       #091C12;
+            --bg2:      #0C2218;
+            --surface:  #0F2A1D;
+            --border:   #1B3727;
+            --text:     #EDE8DC;
+            --muted:    #6A8C79;
+            --dim:      #3B5C4A;
+            --fd: 'Cormorant Garamond', Georgia, serif;
+            --fm: 'IBM Plex Mono', 'Courier New', monospace;
+        }
+
+        [data-theme="light"] {
+            --bg:      #EDE8DC;
+            --bg2:     #E5E0D4;
+            --surface: #DEDAD0;
+            --border:  #C4BDB0;
+            --text:    #091C12;
+            --muted:   #4A6B56;
+            --dim:     #8A9E92;
+        }
+
+        body {
+            font-family: var(--fm);
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 58px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .hd-mark {
+            display: block;
+            width: 30px;
+            height: 30px;
+            color: var(--text);
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: color 0.3s;
+        }
+
+        nav { display: flex; align-items: center; gap: 24px; }
+
+        nav a {
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--text); }
+
+        .hd-right { display: flex; align-items: center; gap: 12px; }
+
+        .theme-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--border);
+            background: none;
+            border-radius: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .theme-btn:hover { color: var(--text); border-color: var(--muted); }
+        .theme-btn svg { width: 12px; height: 12px; }
+
+        .page-hero {
+            padding: 80px 40px 60px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .page-eyebrow {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: 20px;
+        }
+
+        .page-h1 {
+            font-family: var(--fd);
+            font-weight: 300;
+            font-size: clamp(36px, 4vw, 64px);
+            line-height: 1.05;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .page-meta {
+            font-size: 10px;
+            color: var(--dim);
+            letter-spacing: 1px;
+        }
+
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 72px 40px 100px;
+        }
+
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section h2 {
+            font-family: var(--fd);
+            font-weight: 400;
+            font-size: 22px;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .section p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 2;
+            margin-bottom: 12px;
+        }
+
+        .section p:last-child { margin-bottom: 0; }
+
+        .section ul {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .section ul li {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 2;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .section ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--dim);
+        }
+
+        a.inline {
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a.inline:hover { color: var(--text); border-color: var(--muted); }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .ft-mark {
+            display: block;
+            width: 22px;
+            height: 22px;
+            color: var(--dim);
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            text-decoration: none;
+        }
+
+        .ft-mark:hover { opacity: 0.8; }
+
+        .ft-links { display: flex; gap: 20px; }
+
+        .ft-links a {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .ft-links a:hover { color: var(--muted); }
+        .ft-copy { font-size: 9px; letter-spacing: 0.5px; color: var(--dim); }
+
+        @media (max-width: 768px) {
+            header { padding: 0 20px; }
+            .page-hero { padding: 60px 20px 48px; }
+            .content { padding: 48px 20px 72px; }
+            footer { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/" class="hd-mark" aria-label="AIGA">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" width="30" height="30" aria-hidden="true">
+            <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+            <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+            <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+            <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+        </svg>
+    </a>
+    <nav>
+        <a href="/#platforms">Platforms</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+    </nav>
+    <div class="hd-right">
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+            <svg id="iconDark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg id="iconLight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+    </div>
+</header>
+
+<div class="page-hero">
+    <div class="page-eyebrow">Legal</div>
+    <h1 class="page-h1">Privacy Policy</h1>
+    <p class="page-meta">AIGA LLC &nbsp;·&nbsp; Effective April 2026</p>
+</div>
+
+<div class="content">
+
+    <div class="section">
+        <div class="section-label">Overview</div>
+        <p>AIGA LLC ("AIGA," "we," "us") operates aigaai.com. This policy explains what information we collect through this website, how we use it, and your rights regarding that information. We keep this simple because it is simple — we're a small company, not a data broker.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">What We Collect</div>
+        <p>We only collect information you actively provide through our contact form:</p>
+        <ul>
+            <li>Name</li>
+            <li>Email address</li>
+            <li>Company or organization (optional)</li>
+            <li>Area of interest</li>
+            <li>Message content</li>
+        </ul>
+        <p>We do not use tracking pixels, third-party analytics, or advertising cookies. We do not collect any information passively beyond what your browser sends to any web server (standard access logs, which we do not retain or analyze).</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">How We Use It</div>
+        <p>We use the information you submit solely to respond to your inquiry. We do not add you to marketing lists, sell your information, or share it with any third party for their own purposes.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">Form Processing</div>
+        <p>Our contact form is processed by <a href="https://formspree.io" class="inline" target="_blank" rel="noopener noreferrer">Formspree</a>, a third-party form service. When you submit the form, your data is transmitted to and temporarily stored by Formspree before being delivered to us. Formspree acts as a data processor on our behalf and is subject to their own <a href="https://formspree.io/legal/privacy-policy/" class="inline" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. We do not grant Formspree permission to use your data for any purpose beyond delivering your message to us.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">Data Retention</div>
+        <p>We retain contact form submissions only as long as needed to respond and follow up. We do not maintain a permanent database of contact inquiries. If you'd like your information removed, email us and we'll delete it.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">Your Rights</div>
+        <p>You can request to access, correct, or delete any personal information you've submitted to us at any time. Just send an email to <a href="mailto:info@aigaai.com" class="inline">info@aigaai.com</a> with your request and we'll handle it promptly.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">Contact</div>
+        <p>Questions about this policy or how we handle your data:</p>
+        <p><a href="mailto:info@aigaai.com" class="inline">info@aigaai.com</a><br>AIGA LLC, Hawaii</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">Changes</div>
+        <p>If we materially change how we handle personal data, we'll update this page and the effective date above. We don't anticipate changes — this site does one thing.</p>
+    </div>
+
+</div>
+
+<footer>
+    <a href="/" class="ft-mark" aria-label="AIGA">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" width="22" height="22" aria-hidden="true">
+            <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+            <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+            <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+            <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+        </svg>
+    </a>
+    <div class="ft-links">
+        <a href="/#platforms">Platforms</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+    </div>
+    <span class="ft-copy">&copy; 2026 AIGA LLC. All rights reserved.</span>
+</footer>
+
+<script>
+    const root = document.documentElement;
+    const iD = document.getElementById('iconDark');
+    const iL = document.getElementById('iconLight');
+    const saved = localStorage.getItem('aiga-theme') || 'dark';
+    root.setAttribute('data-theme', saved);
+    setIcons(saved);
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('aiga-theme', next);
+        setIcons(next);
+    });
+
+    function setIcons(t) {
+        iD.style.display = t === 'dark' ? 'block' : 'none';
+        iL.style.display = t === 'dark' ? 'none' : 'block';
+    }
+</script>
+
+</body>
+</html>

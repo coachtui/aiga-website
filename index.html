@@ -4,1043 +4,1057 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIGA — Applied Intelligence Group</title>
-    <meta name="description" content="AIGA builds AI-powered software platforms across finance, operations, education, and beyond. We partner with people who have a problem worth solving.">
+    <meta name="description" content="AIGA builds AI-powered vertical platforms for construction, finance, education, and cognition.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg:        #0D2B1F;
-            --surface:   #112416;
-            --surface-2: #163020;
-            --border:    #1d3826;
-            --text:      #F5F0E8;
-            --muted:     #7d9e8a;
-            --dim:       #4a6b56;
+            --bg:       #091C12;
+            --bg2:      #0C2218;
+            --surface:  #0F2A1D;
+            --border:   #1B3727;
+            --text:     #EDE8DC;
+            --muted:    #6A8C79;
+            --dim:      #3B5C4A;
 
-            --cru:    #00CFA1;
-            --cru-10: rgba(0,207,161,0.10);
-            --cru-22: rgba(0,207,161,0.22);
-            --cru-45: rgba(0,207,161,0.45);
+            --aigacp:   #6DB88E;
+            --cru:      #00CFA1;
+            --dvrg:     #5B82D4;
+            --op:       #C9973A;
+            --offload:  #9B7FD4;
 
-            --dvrg:    #5B82D4;
-            --dvrg-10: rgba(91,130,212,0.10);
-            --dvrg-22: rgba(91,130,212,0.22);
-            --dvrg-45: rgba(91,130,212,0.45);
-
-            --op:    #c9973a;
-            --op-10: rgba(201,151,58,0.10);
-            --op-22: rgba(201,151,58,0.22);
-            --op-45: rgba(201,151,58,0.45);
+            --fd: 'Cormorant Garamond', Georgia, serif;
+            --fm: 'IBM Plex Mono', 'Courier New', monospace;
         }
 
         [data-theme="light"] {
-            --bg:        #F5F0E8;
-            --surface:   #EDE8E0;
-            --surface-2: #E5E0D8;
-            --border:    #D0CBC1;
-            --text:      #0D2B1F;
-            --muted:     #4a6b56;
-            --dim:       #7d9e8a;
+            --bg:      #EDE8DC;
+            --bg2:     #E5E0D4;
+            --surface: #DEDAD0;
+            --border:  #C4BDB0;
+            --text:    #091C12;
+            --muted:   #4A6B56;
+            --dim:     #8A9E92;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--text);
+            font-family: var(--fm);
             background: var(--bg);
-            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.3s, color 0.3s;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        /* Grain overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        /* ─── Marquee ─── */
+        .marquee-bar {
+            height: 30px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 45s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-item {
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 0 36px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .m-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--dim);
+            flex-shrink: 0;
+        }
+
+        .m-dot.live {
+            background: #4ade80;
+            box-shadow: 0 0 5px #4ade80;
+            animation: pdot 2s infinite;
+        }
+
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes pdot { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
 
         /* ─── Header ─── */
         header {
-            height: 68px;
-            border-bottom: 1px solid var(--border);
-            background: var(--bg);
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
-
-        .header-inner {
+            height: 58px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 100%;
+            padding: 0 40px;
+            transition: background 0.3s, border-color 0.3s;
         }
 
-        /* ─── Logo Mark ─── */
-        .logo-mark {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5px;
-            width: 38px;
-            height: 38px;
-            flex-shrink: 0;
+        .hd-mark {
+            display: block;
+            width: 30px;
+            height: 30px;
+            color: var(--text);
             text-decoration: none;
+            flex-shrink: 0;
+            transition: color 0.3s;
         }
 
-        .logo-cell {
-            background: var(--text);
-            color: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 13px;
-            line-height: 1;
-            letter-spacing: -0.5px;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        /* ─── Nav ─── */
         nav {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 24px;
         }
 
         nav a {
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
             color: var(--muted);
             text-decoration: none;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: color 0.2s ease;
+            transition: color 0.2s;
         }
 
         nav a:hover { color: var(--text); }
 
         .nav-cta {
-            padding: 8px 18px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--bg) !important;
+            padding: 7px 14px;
             background: var(--text);
-            border-radius: 4px;
-            transition: opacity 0.2s ease, transform 0.2s ease !important;
+            color: var(--bg) !important;
+            border-radius: 1px;
+            transition: opacity 0.2s !important;
         }
 
-        .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+        .nav-cta:hover { opacity: 0.82; }
 
-        .theme-toggle {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: var(--surface);
+        .hd-right { display: flex; align-items: center; gap: 12px; }
+
+        .theme-btn {
+            width: 30px;
+            height: 30px;
             border: 1px solid var(--border);
+            background: none;
+            border-radius: 1px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--muted);
-            transition: all 0.2s ease;
-            flex-shrink: 0;
+            transition: color 0.2s, border-color 0.2s;
         }
 
-        .theme-toggle:hover { color: var(--text); border-color: var(--muted); }
-        .theme-toggle svg { width: 15px; height: 15px; }
+        .theme-btn:hover { color: var(--text); border-color: var(--muted); }
+        .theme-btn svg { width: 12px; height: 12px; }
 
         .nav-toggle {
             display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
             background: none;
             border: none;
+            cursor: pointer;
             padding: 4px;
+            flex-direction: column;
+            gap: 5px;
         }
 
-        .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--muted); transition: all 0.3s ease; }
+        .nav-toggle span { display: block; width: 20px; height: 1px; background: var(--muted); transition: all 0.3s; }
 
         /* ─── Hero ─── */
         .hero {
-            padding: 100px 0 120px;
-            text-align: center;
-            position: relative;
+            display: grid;
+            grid-template-columns: 36% 64%;
+            min-height: calc(100vh - 88px);
             overflow: hidden;
         }
 
-        .hero::before {
+        .hero-left {
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 56px;
+            position: relative;
+            overflow: hidden;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 36px 36px;
+        }
+
+        /* Radial fade over grid */
+        .hero-left::before {
             content: '';
             position: absolute;
-            top: -180px; left: 50%;
-            transform: translateX(-50%);
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(245,240,232,0.035) 0%, transparent 65%);
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 15%, var(--bg) 90%);
             pointer-events: none;
         }
 
-        [data-theme="light"] .hero::before {
-            background: radial-gradient(circle, rgba(13,43,31,0.04) 0%, transparent 65%);
+        .hero-mark-lg {
+            width: 168px;
+            height: 168px;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+            animation: riseIn 1s cubic-bezier(0.16,1,0.3,1) both;
         }
 
-        .hero > .container { position: relative; z-index: 1; }
-
-        .hero-mark {
-            display: inline-grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
-            width: 108px;
-            height: 108px;
-            margin-bottom: 52px;
-            animation: fadeInScale 0.9s ease-out both;
+        .hero-caption {
+            margin-top: 22px;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dim);
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s ease 0.6s both;
         }
 
-        .hero-mark .logo-cell { font-size: 36px; font-weight: 900; letter-spacing: -1px; }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.92); }
-            to   { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 72px;
         }
 
         .hero-eyebrow {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 9px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 24px;
-            animation: fadeInUp 0.7s ease-out 0.15s both;
+            color: var(--dim);
+            margin-bottom: 28px;
+            animation: fadeIn 0.6s ease 0.2s both;
         }
 
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
-            line-height: 1.05;
-            margin-bottom: 28px;
+        .hero-h1 {
+            font-family: var(--fd);
+            font-weight: 300;
+            font-size: clamp(48px, 5.5vw, 88px);
+            line-height: 1.02;
+            letter-spacing: -0.3px;
             color: var(--text);
-            letter-spacing: -2px;
-            animation: fadeInUp 0.7s ease-out 0.3s both;
+            margin-bottom: 32px;
+            animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+        }
+
+        .hero-h1 em {
+            font-style: italic;
+            color: var(--muted);
         }
 
         .hero-sub {
-            font-size: 19px;
+            font-size: 12px;
             color: var(--muted);
+            line-height: 1.9;
+            max-width: 420px;
             margin-bottom: 48px;
-            max-width: 580px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-            animation: fadeInUp 0.7s ease-out 0.45s both;
+            animation: fadeIn 0.8s ease 0.45s both;
         }
 
         .hero-ctas {
             display: flex;
-            gap: 16px;
-            justify-content: center;
+            gap: 12px;
             flex-wrap: wrap;
-            animation: fadeInUp 0.7s ease-out 0.6s both;
+            animation: fadeIn 0.8s ease 0.6s both;
         }
 
-        .btn-primary {
+        .btn {
             display: inline-block;
-            padding: 15px 36px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--bg);
-            background: var(--text);
-            border-radius: 6px;
-            text-decoration: none;
-            transition: all 0.25s ease;
+            padding: 11px 26px;
+            font-family: var(--fm);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 0.75px;
+            text-decoration: none;
+            border-radius: 1px;
+            transition: all 0.2s;
         }
 
-        .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+        .btn-solid { background: var(--text); color: var(--bg); }
+        .btn-solid:hover { opacity: 0.84; }
 
-        .btn-outline {
-            display: inline-block;
-            padding: 15px 36px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text);
+        .btn-ghost {
             background: transparent;
-            border: 1.5px solid var(--border);
-            border-radius: 6px;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.75px;
+            color: var(--muted);
+            border: 1px solid var(--border);
         }
 
-        .btn-outline:hover { border-color: var(--muted); transform: translateY(-2px); }
+        .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
 
-        /* ─── Shared ─── */
-        .divider { height: 1px; background: var(--border); }
+        @keyframes riseIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-        .section-label {
-            font-size: 11px;
-            font-weight: 700;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* ─── Section rule ─── */
+        .section-rule {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 40px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .rule-label {
+            font-size: 9px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 16px;
+            color: var(--dim);
+            white-space: nowrap;
         }
 
-        .section-title {
-            font-size: 40px;
-            font-weight: 800;
-            color: var(--text);
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-            line-height: 1.1;
-        }
+        .rule-line { flex: 1; height: 1px; background: var(--border); }
+        .rule-meta { font-size: 9px; letter-spacing: 1px; color: var(--dim); white-space: nowrap; }
 
-        .section-sub {
-            font-size: 17px;
-            color: var(--muted);
-            max-width: 520px;
-            line-height: 1.75;
-        }
+        /* ─── Platform Index ─── */
+        .platforms { padding: 0 40px; }
 
-        /* ─── Platforms ─── */
-        .platforms { padding: 100px 0; }
-        .platforms-header { margin-bottom: 60px; }
-
-        .platforms-grid {
+        .platform-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .platform-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 36px 32px;
+            grid-template-columns: 44px 200px 1fr 110px;
+            gap: 0 32px;
+            align-items: start;
+            padding: 34px 0;
+            border-bottom: 1px solid var(--border);
             position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
+            transition: background 0.25s;
         }
 
-        .platform-card::before {
+        .platform-row::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--text), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            top: -1px; left: 0; right: 0;
+            height: 1px;
+            background: var(--pc, transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
         }
 
-        .platform-card:hover { border-color: var(--dim); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
-        .platform-card:hover::before { opacity: 0.25; }
+        .platform-row:first-child { border-top: 1px solid var(--border); }
+        .platform-row:first-child::after { top: 0; }
 
-        .platform-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+        .platform-row:hover { background: var(--surface); }
+        .platform-row:hover::after { transform: scaleX(1); }
 
-        .platform-name { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
-
-        .status-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 10px;
-            font-weight: 700;
+        .p-num {
+            font-size: 9px;
             letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 5px 11px;
-            border-radius: 4px;
-            flex-shrink: 0;
-            margin-top: 4px;
+            color: var(--dim);
+            padding-top: 6px;
         }
 
-        .status-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+        .p-name {
+            font-family: var(--fd);
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
 
-        .status-live { background: rgba(34,197,94,0.08); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
-        .status-live::before { background: #4ade80; box-shadow: 0 0 5px #4ade80; animation: pulse-dot 2s infinite; }
+        .p-cat {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dim);
+        }
 
-        @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+        .p-desc {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.85;
+            padding-top: 4px;
+        }
 
-        .status-dev { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
-        .status-dev::before { background: var(--muted); }
+        .p-modules {
+            margin-top: 10px;
+            font-size: 9px;
+            color: var(--dim);
+            letter-spacing: 0.5px;
+        }
 
-        .platform-desc { font-size: 15px; color: var(--muted); line-height: 1.7; flex: 1; }
+        .p-status {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            padding-top: 4px;
+        }
 
-        .platform-domain {
-            font-size: 10px;
-            font-weight: 700;
+        .p-visit {
+            font-size: 8px;
+            font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--dim);
-            padding-top: 10px;
-            border-top: 1px solid var(--border);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
         }
 
-        .card--cru .platform-name { color: var(--cru); }
-        .card--cru::before { background: linear-gradient(90deg, transparent, var(--cru), transparent); }
-        .card--cru:hover { border-color: var(--cru-45); box-shadow: 0 16px 48px var(--cru-22); }
+        .p-visit:hover { color: var(--muted); }
+        .p-visit svg { width: 9px; height: 9px; transition: transform 0.2s; }
+        .p-visit:hover svg { transform: translate(2px, -2px); }
 
-        .card--dvrg .platform-name { color: var(--dvrg); }
-        .card--dvrg::before { background: linear-gradient(90deg, transparent, var(--dvrg), transparent); }
-        .card--dvrg:hover { border-color: var(--dvrg-45); box-shadow: 0 16px 48px var(--dvrg-22); }
-
-        .card--op .platform-name { color: var(--op); }
-        .card--op::before { background: linear-gradient(90deg, transparent, var(--op), transparent); }
-        .card--op:hover { border-color: var(--op-45); box-shadow: 0 16px 48px var(--op-22); }
-
-        .visit-btn {
+        .pill {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 9px 16px;
-            font-size: 11px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 5px;
-            letter-spacing: 0.75px;
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            transition: all 0.2s ease;
-            align-self: flex-start;
-            margin-top: 2px;
+            padding: 5px 10px;
+            border: 1px solid;
+            border-radius: 1px;
         }
 
-        .visit-btn svg { width: 12px; height: 12px; flex-shrink: 0; transition: transform 0.2s ease; }
-        .visit-btn:hover svg { transform: translate(2px, -2px); }
+        .pill::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
 
-        .visit-btn--cru { color: var(--cru); background: var(--cru-10); border: 1px solid rgba(0,207,161,0.2); }
-        .visit-btn--cru:hover { background: var(--cru-22); border-color: var(--cru-45); }
+        .pill-live {
+            color: #4ade80;
+            border-color: rgba(74,222,128,0.3);
+            background: rgba(74,222,128,0.05);
+        }
 
-        .visit-btn--dvrg { color: var(--dvrg); background: var(--dvrg-10); border: 1px solid rgba(91,130,212,0.2); }
-        .visit-btn--dvrg:hover { background: var(--dvrg-22); border-color: var(--dvrg-45); }
+        .pill-live::before {
+            background: #4ade80;
+            box-shadow: 0 0 4px #4ade80;
+            animation: pdot 2s infinite;
+        }
 
-        .visit-btn--op { color: var(--op); background: var(--op-10); border: 1px solid rgba(201,151,58,0.2); }
-        .visit-btn--op:hover { background: var(--op-22); border-color: var(--op-45); }
+        .pill-dev { color: var(--muted); border-color: var(--border); }
+        .pill-dev::before { background: var(--dim); }
 
-        /* ─── Disciplines ─── */
-        .disciplines {
-            padding: 100px 0;
+        /* Row accent colors */
+        .r-aigacp { --pc: var(--aigacp); } .p-name.aigacp { color: var(--aigacp); }
+        .r-cru     { --pc: var(--cru);    } .p-name.cru     { color: var(--cru);    }
+        .r-dvrg    { --pc: var(--dvrg);   } .p-name.dvrg    { color: var(--dvrg);   }
+        .r-op      { --pc: var(--op);     } .p-name.op      { color: var(--op);     }
+        .r-offload { --pc: var(--offload);} .p-name.offload { color: var(--offload);}
+
+        /* ─── Stats ─── */
+        .stats { padding: 0 40px; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .stat-cell {
+            background: var(--bg);
+            padding: 44px 36px;
+            transition: background 0.2s;
+        }
+
+        .stat-cell:hover { background: var(--surface); }
+
+        .stat-n {
+            font-family: var(--fd);
+            font-size: 60px;
+            font-weight: 300;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-l {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dim);
+        }
+
+        /* ─── Manifesto ─── */
+        .manifesto {
+            padding: 100px 40px;
             background: var(--surface);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
 
-        .disciplines-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
-        .disciplines-intro { position: sticky; top: 88px; }
-        .disciplines-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .manifesto-inner { max-width: 860px; }
 
-        .disc-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 30px 26px;
-            transition: all 0.3s ease;
+        .mf-label {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: 36px;
         }
 
-        .disc-card:hover { border-color: var(--dim); transform: translateY(-2px); }
-
-        .disc-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; margin-bottom: 14px; }
-        .disc-card h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
-        .disc-card p { font-size: 14px; color: var(--muted); line-height: 1.75; }
-
-        /* ─── Approach ─── */
-        .approach { padding: 100px 0; }
-        .approach-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .approach-content .section-sub { max-width: 100%; }
-        .approach-content .section-sub + .section-sub { margin-top: 18px; }
-        .approach-stats { display: flex; flex-direction: column; gap: 16px; }
-
-        .stat-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 22px 26px;
-            transition: border-color 0.3s ease;
+        .mf-quote {
+            font-family: var(--fd);
+            font-weight: 300;
+            font-size: clamp(30px, 3.5vw, 56px);
+            line-height: 1.25;
+            color: var(--text);
         }
 
-        .stat-item:hover { border-color: var(--dim); }
-        .stat-number { font-size: 34px; font-weight: 800; color: var(--text); letter-spacing: -1px; line-height: 1; margin-bottom: 5px; }
-        .stat-label { font-size: 12px; color: var(--dim); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+        .mf-quote em { font-style: italic; color: var(--muted); }
 
-        /* ─── Roadmap ─── */
-        .roadmap { padding: 100px 0; background: var(--surface); border-top: 1px solid var(--border); }
-        .roadmap-header { text-align: center; margin-bottom: 64px; }
-        .roadmap-header .section-sub { margin: 0 auto; }
-
-        .roadmap-track { position: relative; max-width: 740px; margin: 0 auto; }
-
-        .roadmap-track::before {
-            content: '';
-            position: absolute;
-            left: 26px; top: 0; bottom: 0;
-            width: 1px;
-            background: linear-gradient(180deg, var(--muted), transparent);
-            opacity: 0.15;
-        }
-
-        .roadmap-item { display: flex; align-items: flex-start; gap: 28px; padding: 24px 0; position: relative; }
-        .roadmap-item + .roadmap-item { border-top: 1px solid var(--border); }
-
-        .roadmap-dot {
-            width: 52px; height: 52px;
-            border-radius: 50%;
+        .mf-attr {
+            margin-top: 48px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
+            gap: 18px;
         }
 
-        .dot-live { background: rgba(34,197,94,0.1); border: 2px solid #4ade80; color: #4ade80; }
-        .dot-dev { background: var(--surface-2); border: 2px solid var(--border); color: var(--muted); }
-        .dot-planned { background: transparent; border: 1.5px dashed var(--border); color: var(--dim); }
-
-        .roadmap-info { flex: 1; padding-top: 10px; }
-        .roadmap-name { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-        .roadmap-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
-
-        .roadmap-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 4px;
-            margin-top: 8px;
-        }
+        .mf-line { width: 36px; height: 1px; background: var(--dim); }
+        .mf-text { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
 
         /* ─── Contact ─── */
-        .contact { padding: 100px 0; border-top: 1px solid var(--border); }
-        .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-        .contact-intro .section-title { margin-bottom: 18px; }
-        .contact-intro .section-sub { margin-bottom: 36px; }
+        .contact {
+            padding: 100px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            border-top: 1px solid var(--border);
+        }
 
-        .build-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+        .ct-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--dim); margin-bottom: 24px; }
 
-        .build-option {
+        .ct-h2 {
+            font-family: var(--fd);
+            font-weight: 300;
+            font-size: clamp(28px, 3vw, 48px);
+            line-height: 1.1;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .ct-sub { font-size: 11px; color: var(--muted); line-height: 1.9; margin-bottom: 32px; }
+
+        .ct-options { display: flex; flex-direction: column; gap: 6px; margin-bottom: 32px; }
+
+        .ct-opt {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 14px 18px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 7px;
-            font-size: 14px;
+            font-size: 11px;
             color: var(--muted);
-            transition: border-color 0.2s ease;
+            padding: 11px 14px;
+            border: 1px solid var(--border);
+            border-radius: 1px;
+            transition: border-color 0.2s;
+            text-decoration: none;
+            font-family: var(--fm);
         }
 
-        .build-option:hover { border-color: var(--dim); }
-        .option-mark { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+        .ct-opt:hover { border-color: var(--dim); }
+        .ct-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--dim); flex-shrink: 0; }
 
-        .contact-email {
-            font-size: 17px;
-            font-weight: 700;
+        .ct-email {
+            font-family: var(--fd);
+            font-size: 22px;
             color: var(--text);
             text-decoration: none;
             border-bottom: 1px solid var(--border);
             padding-bottom: 2px;
-            transition: border-color 0.2s ease;
+            transition: border-color 0.2s;
         }
 
-        .contact-email:hover { border-color: var(--muted); }
+        .ct-email:hover { border-color: var(--muted); }
 
-        .contact-form {
-            background: var(--surface);
-            padding: 40px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
+        .ct-form { display: flex; flex-direction: column; gap: 16px; }
 
-        .form-group { margin-bottom: 22px; }
-
-        .form-group label {
+        .fg label {
             display: block;
-            font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--muted);
+            font-size: 8px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--muted);
+            margin-bottom: 7px;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .fg input,
+        .fg select,
+        .fg textarea {
             width: 100%;
-            padding: 11px 14px;
-            font-size: 14px;
-            background: var(--bg);
+            padding: 10px 13px;
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 7px;
+            border-radius: 1px;
             color: var(--text);
-            font-family: inherit;
-            transition: border-color 0.2s ease;
+            font-family: var(--fm);
+            font-size: 11px;
+            transition: border-color 0.2s;
             appearance: none;
         }
 
-        .form-group select {
+        .fg input:focus,
+        .fg select:focus,
+        .fg textarea:focus { outline: none; border-color: var(--muted); }
+
+        .fg input::placeholder,
+        .fg textarea::placeholder { color: var(--dim); }
+
+        .fg select {
             cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237d9e8a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%233B5C4A' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 14px center;
-            padding-right: 36px;
+            background-position: right 13px center;
+            padding-right: 32px;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus { outline: none; border-color: var(--muted); }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder { color: var(--dim); }
-
-        .form-group textarea { resize: vertical; min-height: 110px; }
+        .fg textarea { resize: vertical; min-height: 96px; }
 
         .form-submit {
-            width: 100%;
-            padding: 14px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--bg);
+            padding: 12px;
             background: var(--text);
+            color: var(--bg);
             border: none;
-            border-radius: 7px;
-            cursor: pointer;
-            transition: all 0.25s ease;
+            border-radius: 1px;
+            font-family: var(--fm);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 0.75px;
+            cursor: pointer;
+            transition: opacity 0.2s;
         }
 
-        .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+        .form-submit:hover { opacity: 0.84; }
 
         /* ─── Footer ─── */
-        footer { border-top: 1px solid var(--border); padding: 36px 0 24px; }
-
-        .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
-
-        .footer-mark {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            width: 28px;
-            height: 28px;
-            opacity: 0.4;
-            transition: opacity 0.2s ease;
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .footer-mark:hover { opacity: 0.65; }
-        .footer-mark .logo-cell { font-size: 9px; font-weight: 900; }
+        .ft-mark {
+            display: block;
+            width: 22px;
+            height: 22px;
+            color: var(--dim);
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
 
-        .footer-links { display: flex; gap: 24px; }
+        .ft-mark:hover { opacity: 0.8; }
 
-        .footer-links a {
-            font-size: 11px;
+        .ft-links { display: flex; gap: 20px; }
+
+        .ft-links a {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             color: var(--dim);
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            transition: color 0.2s ease;
+            transition: color 0.2s;
         }
 
-        .footer-links a:hover { color: var(--muted); }
-        .footer-copy { font-size: 11px; color: var(--dim); line-height: 1.9; }
+        .ft-links a:hover { color: var(--muted); }
+        .ft-copy { font-size: 9px; letter-spacing: 0.5px; color: var(--dim); }
+
+        /* ─── Reveal ─── */
+        .rv {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            transition-delay: var(--d, 0s);
+        }
+
+        .rv.in { opacity: 1; transform: translateY(0); }
 
         /* ─── Responsive ─── */
         @media (max-width: 1024px) {
-            .disciplines-layout,
-            .approach-layout,
-            .contact-layout { grid-template-columns: 1fr; gap: 48px; }
-            .disciplines-intro { position: static; }
+            .hero { grid-template-columns: 1fr; }
+            .hero-left { display: none; }
+            .hero-right { padding: 72px 40px; min-height: 85vh; justify-content: flex-end; }
+            .platform-row { grid-template-columns: 40px 160px 1fr auto; gap: 0 20px; }
+            .p-desc { font-size: 10px; }
+            .contact { grid-template-columns: 1fr; gap: 48px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
+            header { padding: 0 20px; }
             nav {
                 display: none;
                 position: absolute;
-                top: 68px; left: 0; right: 0;
+                top: 58px; left: 0; right: 0;
                 background: var(--bg);
                 border-bottom: 1px solid var(--border);
                 flex-direction: column;
-                padding: 24px;
-                gap: 20px;
+                padding: 20px;
+                gap: 16px;
                 align-items: flex-start;
+                z-index: 999;
             }
-
             nav.open { display: flex; }
             .nav-toggle { display: flex; }
-            .theme-toggle { display: none; }
-
-            .hero h1 { font-size: 40px; letter-spacing: -1.5px; }
-            .hero-sub { font-size: 16px; }
-            .hero-mark { width: 80px; height: 80px; }
-            .hero-mark .logo-cell { font-size: 26px; }
-            .section-title { font-size: 30px; }
-            .platforms-grid, .disciplines-grid { grid-template-columns: 1fr; }
-            .roadmap-track::before { display: none; }
-            .contact-form { padding: 24px 18px; }
+            .theme-btn { display: none; }
+            .hero-right { padding: 40px 20px; }
+            .section-rule { padding: 18px 20px; }
+            .platforms { padding: 0 20px; }
+            .platform-row { grid-template-columns: 36px 1fr auto; gap: 0 14px; padding: 24px 0; }
+            .p-name { font-size: 24px; }
+            .p-desc { display: none; }
+            .stats { padding: 0 20px; }
+            .manifesto { padding: 72px 20px; }
+            .contact { padding: 72px 20px; }
+            footer { padding: 24px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <div class="header-inner">
-                <a href="#" class="logo-mark" aria-label="AIGA home">
-                    <div class="logo-cell">A</div>
-                    <div class="logo-cell">I</div>
-                    <div class="logo-cell">G</div>
-                    <div class="logo-cell">A</div>
-                </a>
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                    <span></span><span></span><span></span>
-                </button>
-                <nav id="mainNav">
-                    <a href="#platforms">Platforms</a>
-                    <a href="#disciplines">Disciplines</a>
-                    <a href="#roadmap">Roadmap</a>
-                    <a href="#contact" class="nav-cta">Build With Us</a>
-                </nav>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <svg id="iconDark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                    </svg>
-                    <svg id="iconLight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-                        <circle cx="12" cy="12" r="5"/>
-                        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                    </svg>
-                </button>
-            </div>
+<!-- Status marquee -->
+<div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-track">
+        <span class="marquee-item"><span class="m-dot live"></span>CRU — Live</span>
+        <span class="marquee-item"><span class="m-dot live"></span>DVRG — Live</span>
+        <span class="marquee-item"><span class="m-dot live"></span>Operator — Live</span>
+        <span class="marquee-item"><span class="m-dot"></span>AIGA CP — In Development</span>
+        <span class="marquee-item"><span class="m-dot"></span>Offload — Coming Soon</span>
+        <span class="marquee-item"><span class="m-dot live"></span>CRU — Live</span>
+        <span class="marquee-item"><span class="m-dot live"></span>DVRG — Live</span>
+        <span class="marquee-item"><span class="m-dot live"></span>Operator — Live</span>
+        <span class="marquee-item"><span class="m-dot"></span>AIGA CP — In Development</span>
+        <span class="marquee-item"><span class="m-dot"></span>Offload — Coming Soon</span>
+    </div>
+</div>
+
+<!-- Header -->
+<header>
+    <a href="#" class="hd-mark" aria-label="AIGA">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" width="30" height="30" aria-hidden="true">
+            <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+            <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+            <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+            <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+        </svg>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+        <a href="#platforms">Platforms</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="nav-cta">Build With Us</a>
+    </nav>
+    <div class="hd-right">
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+            <svg id="iconDark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg id="iconLight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-left">
+        <svg class="hero-mark-lg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" aria-hidden="true">
+            <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+            <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+            <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+            <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+        </svg>
+        <span class="hero-caption">AIGA LLC &nbsp;·&nbsp; Est. 2024</span>
+    </div>
+    <div class="hero-right">
+        <span class="hero-eyebrow">Applied Intelligence Group</span>
+        <h1 class="hero-h1">We build software<br>that <em>thinks.</em></h1>
+        <p class="hero-sub">AIGA is a platform studio. We build AI-powered vertical platforms for construction, finance, education, and cognition — and we only build in domains we've worked in. Every product is built from the inside out.</p>
+        <div class="hero-ctas">
+            <a href="#platforms" class="btn btn-solid">See Our Platforms</a>
+            <a href="#contact" class="btn btn-ghost">Build With Us</a>
         </div>
-    </header>
+    </div>
+</section>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-mark" aria-hidden="true">
-                <div class="logo-cell">A</div>
-                <div class="logo-cell">I</div>
-                <div class="logo-cell">G</div>
-                <div class="logo-cell">A</div>
-            </div>
-            <span class="hero-eyebrow">Applied Intelligence Group</span>
-            <h1>We build software<br>that thinks.</h1>
-            <p class="hero-sub">AIGA is a platform studio. We build AI-powered products across finance, operations, education, and beyond — and partner with people who have a problem worth solving.</p>
-            <div class="hero-ctas">
-                <a href="#platforms" class="btn-primary">See Our Platforms</a>
-                <a href="#contact" class="btn-outline">Build With Us</a>
-            </div>
+<!-- Platforms -->
+<div class="section-rule" id="platforms">
+    <span class="rule-label">Platforms</span>
+    <div class="rule-line"></div>
+    <span class="rule-meta">05 Products</span>
+</div>
+
+<div class="platforms">
+
+    <div class="platform-row r-aigacp rv">
+        <span class="p-num">01</span>
+        <div>
+            <div class="p-name aigacp">AIGA CP</div>
+            <div class="p-cat">Construction Platform</div>
         </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <section class="platforms" id="platforms">
-        <div class="container">
-            <div class="platforms-header">
-                <p class="section-label">Our Platforms</p>
-                <h2 class="section-title">A growing suite<br>of intelligent software</h2>
-                <p class="section-sub">Each platform is purpose-built for a specific problem. Domain depth and AI from day one.</p>
-            </div>
-
-            <div class="platforms-grid">
-                <div class="platform-card card--cru">
-                    <div class="platform-card-top">
-                        <span class="platform-name">CRU</span>
-                        <span class="status-tag status-live">Live</span>
-                    </div>
-                    <p class="platform-desc">AI-powered workforce coordination and scheduling for complex operational teams. Fewer gaps, fewer calls, less chaos.</p>
-                    <p class="platform-domain">Operations &nbsp;/&nbsp; Workforce</p>
-                    <a href="https://www.cruwork.app" target="_blank" rel="noopener noreferrer" class="visit-btn visit-btn--cru">
-                        Visit Platform
-                        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                </div>
-
-                <div class="platform-card card--dvrg">
-                    <div class="platform-card-top">
-                        <span class="platform-name">DVRG</span>
-                        <span class="status-tag status-live">Live</span>
-                    </div>
-                    <p class="platform-desc">Institutional-grade equity research and capital intelligence. Built for investors who think in frameworks, not headlines.</p>
-                    <p class="platform-domain">Finance &nbsp;/&nbsp; Investment Research</p>
-                    <a href="https://www.dvrg.io" target="_blank" rel="noopener noreferrer" class="visit-btn visit-btn--dvrg">
-                        Visit Platform
-                        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                </div>
-
-                <div class="platform-card card--op">
-                    <div class="platform-card-top">
-                        <span class="platform-name">Operator</span>
-                        <span class="status-tag status-live">Live</span>
-                    </div>
-                    <p class="platform-desc">The only AI course taught entirely through conversation. No videos, no slides — just you and an AI that asks questions back, corrects your thinking, and won't move on until you get it.</p>
-                    <p class="platform-domain">Education &nbsp;/&nbsp; AI Literacy</p>
-                    <a href="https://buildyouroperator.com" target="_blank" rel="noopener noreferrer" class="visit-btn visit-btn--op">
-                        Visit Platform
-                        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                </div>
-
-                <div class="platform-card">
-                    <div class="platform-card-top">
-                        <span class="platform-name">AIGA Inspect</span>
-                        <span class="status-tag status-dev">In Development</span>
-                    </div>
-                    <p class="platform-desc">Computer vision for field inspection and predictive maintenance. Catch failures before they become downtime.</p>
-                    <p class="platform-domain">Operations &nbsp;/&nbsp; Equipment Intelligence</p>
-                </div>
-            </div>
+        <div class="p-desc">
+            A modular construction OS. Companies unlock the capabilities they need — workforce coordination, equipment intelligence, project engineering, and more. Built by people who've run jobs, not just studied them.
+            <div class="p-modules">Modules &nbsp;—&nbsp; CRU &nbsp;·&nbsp; Fix &nbsp;·&nbsp; Inspect &nbsp;·&nbsp; PE Copilot</div>
         </div>
-    </section>
+        <div class="p-status"><span class="pill pill-dev">In Dev</span></div>
+    </div>
 
-    <div class="divider"></div>
-
-    <section class="disciplines" id="disciplines">
-        <div class="container">
-            <div class="disciplines-layout">
-                <div class="disciplines-intro">
-                    <p class="section-label">What We Build With</p>
-                    <h2 class="section-title">Four<br>disciplines</h2>
-                    <p class="section-sub">Every AIGA platform draws from one or more of these core technology layers.</p>
-                </div>
-
-                <div class="disciplines-grid">
-                    <div class="disc-card">
-                        <div class="disc-num">01</div>
-                        <h3>Systems Intelligence</h3>
-                        <p>AI that coordinates complex workflows — scheduling, routing, resource allocation. The automation layer for operations that move.</p>
-                    </div>
-                    <div class="disc-card">
-                        <div class="disc-num">02</div>
-                        <h3>Financial Intelligence</h3>
-                        <p>Investment analysis, capital modeling, and market intelligence at institutional depth. Data-driven decisions, not gut calls.</p>
-                    </div>
-                    <div class="disc-card">
-                        <div class="disc-num">03</div>
-                        <h3>Predictive Systems</h3>
-                        <p>Models that surface risks, anomalies, and opportunities before they're visible. From maintenance windows to market shifts.</p>
-                    </div>
-                    <div class="disc-card">
-                        <div class="disc-num">04</div>
-                        <h3>Applied AI</h3>
-                        <p>Domain-native AI tuned for specific problems — not generic models bolted onto existing workflows. Built from the data that matters.</p>
-                    </div>
-                </div>
-            </div>
+    <div class="platform-row r-cru rv">
+        <span class="p-num">02</span>
+        <div>
+            <div class="p-name cru">CRU</div>
+            <div class="p-cat">Workforce Operations</div>
         </div>
-    </section>
-
-    <section class="approach" id="approach">
-        <div class="container">
-            <div class="approach-layout">
-                <div class="approach-content">
-                    <p class="section-label">The Approach</p>
-                    <h2 class="section-title">Inside the problem.</h2>
-                    <p class="section-sub">AIGA doesn't take briefs from the outside. We operate within the domains we build for — which means our products reflect how work actually happens, not how it's supposed to on paper.</p>
-                    <p class="section-sub">The insight behind each platform came from doing the work, not studying it. That difference shows up in every feature we ship.</p>
-                </div>
-                <div class="approach-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Live Platforms</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2+</div>
-                        <div class="stat-label">In Development</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4</div>
-                        <div class="stat-label">Industries Targeted</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Room to Grow</div>
-                    </div>
-                </div>
-            </div>
+        <div class="p-desc">
+            AI-powered scheduling and coordination for complex operational teams. Fewer gaps, fewer calls, less chaos. The workforce module powering AIGA CP — available now as a standalone.
         </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <section class="roadmap" id="roadmap">
-        <div class="container">
-            <div class="roadmap-header">
-                <p class="section-label">Platform Development</p>
-                <h2 class="section-title">Roadmap</h2>
-                <p class="section-sub">A long-term platform development program. New products are identified, validated with domain experts, and shipped.</p>
+        <div class="p-status">
+                <span class="pill pill-live">Live</span>
+                <a href="https://www.cruwork.app" target="_blank" rel="noopener noreferrer" class="p-visit">Visit <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
+    </div>
 
-            <div class="roadmap-track">
-                <div class="roadmap-item">
-                    <div class="roadmap-dot dot-live">Live</div>
-                    <div class="roadmap-info">
-                        <div class="roadmap-name">CRU</div>
-                        <div class="roadmap-desc">AI-powered workforce management for complex operational teams.</div>
-                        <span class="roadmap-tag status-live">Live</span>
-                    </div>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-dot dot-live">Live</div>
-                    <div class="roadmap-info">
-                        <div class="roadmap-name">DVRG</div>
-                        <div class="roadmap-desc">Institutional equity research and capital intelligence.</div>
-                        <span class="roadmap-tag status-live">Live</span>
-                    </div>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-dot dot-live">Live</div>
-                    <div class="roadmap-info">
-                        <div class="roadmap-name">Operator</div>
-                        <div class="roadmap-desc">Conversation-based AI education. Founding cohort open now at buildyouroperator.com.</div>
-                        <span class="roadmap-tag status-live">Live</span>
-                    </div>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-dot dot-dev">Dev</div>
-                    <div class="roadmap-info">
-                        <div class="roadmap-name">AIGA Inspect</div>
-                        <div class="roadmap-desc">Computer vision inspection and predictive maintenance for equipment fleets.</div>
-                        <span class="roadmap-tag status-dev">In Development</span>
-                    </div>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-dot dot-planned">TBD</div>
-                    <div class="roadmap-info">
-                        <div class="roadmap-name">Future Platforms</div>
-                        <div class="roadmap-desc">AIGA continuously identifies high-leverage problems across domains. The next platform could be in healthcare, logistics, legal — wherever the problem is hard enough to matter.</div>
-                        <span class="roadmap-tag" style="background: var(--surface-2); color: var(--dim); border: 1px solid var(--border);">Planned</span>
-                    </div>
-                </div>
-            </div>
+    <div class="platform-row r-dvrg rv">
+        <span class="p-num">03</span>
+        <div>
+            <div class="p-name dvrg">DVRG</div>
+            <div class="p-cat">Investment Research</div>
         </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-layout">
-                <div class="contact-intro">
-                    <p class="section-label">Let's Build</p>
-                    <h2 class="section-title">Have a problem worth solving?</h2>
-                    <p class="section-sub">Whether you want to deploy an AIGA platform, partner on a new product idea, or bring something you want built — we're listening.</p>
-
-                    <div class="build-options">
-                        <div class="build-option">
-                            <div class="option-mark"></div>
-                            Deploy a platform in your organization
-                        </div>
-                        <div class="build-option">
-                            <div class="option-mark"></div>
-                            Partner on a new product idea
-                        </div>
-                        <div class="build-option">
-                            <div class="option-mark"></div>
-                            Invest in what we're building
-                        </div>
-                    </div>
-
-                    <a href="mailto:info@aigaai.com" class="contact-email">info@aigaai.com</a>
-                </div>
-
-                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mreanrbo" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your.email@company.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company" placeholder="Your organization">
-                    </div>
-                    <div class="form-group">
-                        <label for="interest">What brings you here?</label>
-                        <select id="interest" name="interest">
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="cru">CRU — Workforce Operations</option>
-                            <option value="dvrg">DVRG — Investment Research</option>
-                            <option value="operator">Operator — AI Education</option>
-                            <option value="inspect">AIGA Inspect — Equipment Intelligence</option>
-                            <option value="build">I have an idea I want to build</option>
-                            <option value="invest">Investment / Partnership</option>
-                            <option value="other">Something else</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Tell us what you're working on..." required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Send Message</button>
-                </form>
-            </div>
+        <div class="p-desc">
+            Institutional-grade equity research and capital intelligence. Built for investors who think in frameworks, not headlines. Data-driven decisions, not gut calls.
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-mark" aria-label="AIGA">
-                    <div class="logo-cell">A</div>
-                    <div class="logo-cell">I</div>
-                    <div class="logo-cell">G</div>
-                    <div class="logo-cell">A</div>
-                </div>
-                <div class="footer-links">
-                    <a href="#platforms">Platforms</a>
-                    <a href="#disciplines">Disciplines</a>
-                    <a href="#roadmap">Roadmap</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-copy">
-                    <p>&copy; 2026 AIGA LLC. All rights reserved.</p>
-                </div>
+        <div class="p-status">
+                <span class="pill pill-live">Live</span>
+                <a href="https://www.dvrg.io" target="_blank" rel="noopener noreferrer" class="p-visit">Visit <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
+    </div>
+
+    <div class="platform-row r-op rv">
+        <span class="p-num">04</span>
+        <div>
+            <div class="p-name op">Operator</div>
+            <div class="p-cat">AI Education</div>
         </div>
-    </footer>
+        <div class="p-desc">
+            The only AI course taught entirely through conversation. No videos, no slides — just you and an AI that asks questions back, corrects your thinking, and won't move on until you get it.
+        </div>
+        <div class="p-status">
+                <span class="pill pill-live">Live</span>
+                <a href="https://www.buildyouroperator.com" target="_blank" rel="noopener noreferrer" class="p-visit">Visit <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+    </div>
 
-    <script>
-        const root = document.documentElement;
-        const iconDark = document.getElementById('iconDark');
-        const iconLight = document.getElementById('iconLight');
+    <div class="platform-row r-offload rv">
+        <span class="p-num">05</span>
+        <div>
+            <div class="p-name offload">Offload</div>
+            <div class="p-cat">Cognitive Inbox</div>
+        </div>
+        <div class="p-desc">
+            A proactive second brain. Voice in a thought, get it back at the right moment — categorized by context, location, and behavior. Zero friction. No folders. No filing. It just knows.
+        </div>
+        <div class="p-status"><span class="pill pill-dev">Coming Soon</span></div>
+    </div>
 
-        const saved = localStorage.getItem('aiga-theme') || 'dark';
-        root.setAttribute('data-theme', saved);
-        updateIcons(saved);
+</div>
 
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            root.setAttribute('data-theme', next);
-            localStorage.setItem('aiga-theme', next);
-            updateIcons(next);
+<!-- Stats -->
+<div class="section-rule" id="about">
+    <span class="rule-label">By the Numbers</span>
+    <div class="rule-line"></div>
+</div>
+
+<div class="stats">
+    <div class="stats-grid">
+        <div class="stat-cell rv">
+            <div class="stat-n">3</div>
+            <div class="stat-l">Live Platforms</div>
+        </div>
+        <div class="stat-cell rv">
+            <div class="stat-n">5</div>
+            <div class="stat-l">Total Products</div>
+        </div>
+        <div class="stat-cell rv">
+            <div class="stat-n">4</div>
+            <div class="stat-l">Industries</div>
+        </div>
+        <div class="stat-cell rv">
+            <div class="stat-n">∞</div>
+            <div class="stat-l">Room to Grow</div>
+        </div>
+    </div>
+</div>
+
+<!-- Manifesto -->
+<div class="manifesto">
+    <div class="manifesto-inner">
+        <div class="mf-label rv">The Approach</div>
+        <p class="mf-quote rv">
+            AIGA doesn't take briefs from the outside. We operate <em>within the domains</em> we build for — which means our products reflect how work actually happens, not how it looks on a whiteboard.
+        </p>
+        <div class="mf-attr rv">
+            <div class="mf-line"></div>
+            <span class="mf-text">Inside the problem. Every time.</span>
+        </div>
+    </div>
+</div>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <div class="rv">
+        <div class="ct-label">Let's Build</div>
+        <h2 class="ct-h2">Have a problem worth solving?</h2>
+        <p class="ct-sub">Whether you want to deploy an AIGA platform, partner on a new idea, or bring something you want built — we're listening.</p>
+        <div class="ct-options">
+            <a href="mailto:info@aigaai.com?subject=Deploy AIGA Platform" class="ct-opt"><div class="ct-dot"></div>Deploy a platform in your organization</a>
+            <a href="mailto:info@aigaai.com?subject=Product Partnership" class="ct-opt"><div class="ct-dot"></div>Partner on a new product idea</a>
+            <a href="mailto:info@aigaai.com?subject=Investment Inquiry" class="ct-opt"><div class="ct-dot"></div>Invest in what we're building</a>
+        </div>
+        <a href="mailto:info@aigaai.com" class="ct-email">info@aigaai.com</a>
+    </div>
+
+    <form class="ct-form rv" id="contactForm" action="https://formspree.io/f/mreanrbo" method="POST">
+        <div class="fg">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="fg">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+        <div class="fg">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Your organization">
+        </div>
+        <div class="fg">
+            <label for="interest">What brings you here?</label>
+            <select id="interest" name="interest">
+                <option value="" disabled selected>Select an option</option>
+                <option value="aigacp">AIGA CP — Construction Platform</option>
+                <option value="cru">CRU — Workforce Operations</option>
+                <option value="dvrg">DVRG — Investment Research</option>
+                <option value="operator">Operator — AI Education</option>
+                <option value="offload">Offload — Cognitive Inbox</option>
+                <option value="build">I have an idea I want to build</option>
+                <option value="invest">Investment / Partnership</option>
+                <option value="other">Something else</option>
+            </select>
+        </div>
+        <div class="fg">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what you're working on..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <a href="#" class="ft-mark" aria-label="AIGA">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" width="22" height="22" aria-hidden="true">
+            <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+            <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+            <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+            <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+        </svg>
+    </a>
+    <div class="ft-links">
+        <a href="#platforms">Platforms</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+    </div>
+    <span class="ft-copy">&copy; 2026 AIGA LLC. All rights reserved.</span>
+</footer>
+
+<script>
+    // Theme
+    const root = document.documentElement;
+    const iD = document.getElementById('iconDark');
+    const iL = document.getElementById('iconLight');
+    const saved = localStorage.getItem('aiga-theme') || 'dark';
+    root.setAttribute('data-theme', saved);
+    setIcons(saved);
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('aiga-theme', next);
+        setIcons(next);
+    });
+
+    function setIcons(t) {
+        iD.style.display = t === 'dark' ? 'block' : 'none';
+        iL.style.display = t === 'dark' ? 'none' : 'block';
+    }
+
+    // Nav
+    const toggle = document.getElementById('navToggle');
+    const nav = document.getElementById('mainNav');
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+    // Scroll reveal with stagger
+    const reveals = document.querySelectorAll('.rv');
+    reveals.forEach((el, i) => el.style.setProperty('--d', `${i * 0.04}s`));
+
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('in');
+                obs.unobserve(e.target);
+            }
         });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-        function updateIcons(theme) {
-            iconDark.style.display = theme === 'dark' ? 'block' : 'none';
-            iconLight.style.display = theme === 'dark' ? 'none' : 'block';
-        }
-
-        const navToggle = document.getElementById('navToggle');
-        const mainNav = document.getElementById('mainNav');
-        navToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
-        mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mainNav.classList.remove('open')));
-    </script>
+    reveals.forEach(el => obs.observe(el));
+</script>
 
 </body>
 </html>
