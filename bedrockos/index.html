@@ -21,11 +21,12 @@
             --dim:      #3B5C4A;
 
             --brand:    #6DB88E;
-            --cru:      #00CFA1;
-            --fix:      #6DB88E;
-            --inspect:  #5B82D4;
-            --datum:    #C9973A;
-            --mx:       #9B7FD4;
+            --cx:   #00CFA1;
+            --ox:   #D4905F;
+            --fx:   #6DB88E;
+            --ix:   #5B82D4;
+            --dx:   #C9973A;
+            --mx:   #9B7FD4;
 
             --fd: 'Cormorant Garamond', Georgia, serif;
             --fm: 'IBM Plex Mono', 'Courier New', monospace;
@@ -331,7 +332,7 @@
         .os-modules {
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 6px;
         }
 
@@ -383,10 +384,12 @@
             line-height: 1.4;
         }
 
-        .mod-cru  { --mc: var(--cru);     animation-delay: 0.9s; }
-        .mod-fix  { --mc: var(--fix);     animation-delay: 1.0s; }
-        .mod-ins  { --mc: var(--inspect); animation-delay: 1.1s; }
-        .mod-dat  { --mc: var(--datum);   animation-delay: 1.2s; }
+        .mod-cx  { --mc: var(--cx); animation-delay: 0.90s; }
+        .mod-ox  { --mc: var(--ox); animation-delay: 0.95s; }
+        .mod-fx  { --mc: var(--fx); animation-delay: 1.00s; }
+        .mod-ix  { --mc: var(--ix); animation-delay: 1.05s; }
+        .mod-dx  { --mc: var(--dx); animation-delay: 1.10s; }
+        .mod-mx  { --mc: var(--mx); animation-delay: 1.15s; }
 
         .os-caption {
             margin-top: 32px;
@@ -569,8 +572,8 @@
         }
 
         .p-one  { --pc: var(--brand); }
-        .p-two  { --pc: var(--inspect); }
-        .p-three{ --pc: var(--datum); }
+        .p-two  { --pc: var(--ix); }
+        .p-three{ --pc: var(--dx); }
 
         /* ─── Modules ─── */
         .modules { padding: 0 40px; }
@@ -691,11 +694,12 @@
             animation: pdot 2.5s infinite;
         }
 
-        .r-cru { --mc: var(--cru); }     .m-name.cru    { color: var(--cru); }
-        .r-fix { --mc: var(--fix); }     .m-name.fix    { color: var(--fix); }
-        .r-ins { --mc: var(--inspect); } .m-name.ins    { color: var(--inspect); }
-        .r-dat { --mc: var(--datum); }   .m-name.dat    { color: var(--datum); }
-        .r-mx  { --mc: var(--mx); }      .m-name.mx     { color: var(--mx); }
+        .r-cx  { --mc: var(--cx); }  .m-name.cx  { color: var(--cx); }
+        .r-ox  { --mc: var(--ox); }  .m-name.ox  { color: var(--ox); }
+        .r-fx  { --mc: var(--fx); }  .m-name.fx  { color: var(--fx); }
+        .r-ix  { --mc: var(--ix); }  .m-name.ix  { color: var(--ix); }
+        .r-dx  { --mc: var(--dx); }  .m-name.dx  { color: var(--dx); }
+        .r-mx  { --mc: var(--mx); }  .m-name.mx  { color: var(--mx); }
 
         /* ─── Workflow ─── */
         .workflow {
@@ -1177,15 +1181,19 @@
 <div class="marquee-bar" aria-hidden="true">
     <div class="marquee-track">
         <span class="marquee-item"><span class="m-dot brand"></span>BedrockOS — In Development</span>
-        <span class="marquee-item"><span class="m-dot live"></span>CRU Module — Active</span>
-        <span class="marquee-item"><span class="m-dot live"></span>Fix Module — Active</span>
+        <span class="marquee-item"><span class="m-dot live"></span>CX — Active</span>
+        <span class="marquee-item"><span class="m-dot live"></span>OX — Active</span>
+        <span class="marquee-item"><span class="m-dot live"></span>FX — Active</span>
+        <span class="marquee-item"><span class="m-dot"></span>IX — Roadmap</span>
+        <span class="marquee-item"><span class="m-dot"></span>DX — Roadmap</span>
         <span class="marquee-item"><span class="m-dot"></span>MX Agent — In Spec</span>
-        <span class="marquee-item"><span class="m-dot"></span>Datum — Roadmap</span>
         <span class="marquee-item"><span class="m-dot brand"></span>BedrockOS — In Development</span>
-        <span class="marquee-item"><span class="m-dot live"></span>CRU Module — Active</span>
-        <span class="marquee-item"><span class="m-dot live"></span>Fix Module — Active</span>
+        <span class="marquee-item"><span class="m-dot live"></span>CX — Active</span>
+        <span class="marquee-item"><span class="m-dot live"></span>OX — Active</span>
+        <span class="marquee-item"><span class="m-dot live"></span>FX — Active</span>
+        <span class="marquee-item"><span class="m-dot"></span>IX — Roadmap</span>
+        <span class="marquee-item"><span class="m-dot"></span>DX — Roadmap</span>
         <span class="marquee-item"><span class="m-dot"></span>MX Agent — In Spec</span>
-        <span class="marquee-item"><span class="m-dot"></span>Datum — Roadmap</span>
     </div>
 </div>
 
@@ -1238,25 +1246,35 @@
             <div class="os-connector"></div>
             <!-- Module layer -->
             <div class="os-modules">
-                <div class="os-mod mod-cru">
+                <div class="os-mod mod-cx">
                     <div class="os-mod-dot"></div>
-                    <div class="os-mod-name">CRU</div>
+                    <div class="os-mod-name">CX</div>
                     <div class="os-mod-label">Workforce</div>
                 </div>
-                <div class="os-mod mod-fix">
+                <div class="os-mod mod-ox">
                     <div class="os-mod-dot"></div>
-                    <div class="os-mod-name">Fix</div>
+                    <div class="os-mod-name">OX</div>
+                    <div class="os-mod-label">Operations</div>
+                </div>
+                <div class="os-mod mod-fx">
+                    <div class="os-mod-dot"></div>
+                    <div class="os-mod-name">FX</div>
                     <div class="os-mod-label">Diagnostics</div>
                 </div>
-                <div class="os-mod mod-ins">
+                <div class="os-mod mod-ix">
                     <div class="os-mod-dot"></div>
-                    <div class="os-mod-name">INS</div>
+                    <div class="os-mod-name">IX</div>
                     <div class="os-mod-label">Inspect</div>
                 </div>
-                <div class="os-mod mod-dat">
+                <div class="os-mod mod-dx">
                     <div class="os-mod-dot"></div>
-                    <div class="os-mod-name">DAT</div>
+                    <div class="os-mod-name">DX</div>
                     <div class="os-mod-label">Geospatial</div>
+                </div>
+                <div class="os-mod mod-mx">
+                    <div class="os-mod-dot"></div>
+                    <div class="os-mod-name">MX</div>
+                    <div class="os-mod-label">Maintenance</div>
                 </div>
             </div>
         </div>
@@ -1285,7 +1303,7 @@
     <div class="pillar p-one rv">
         <div class="pillar-num">01</div>
         <div class="pillar-head">Everything<br><em>connected.</em></div>
-        <p class="pillar-body">Issues from inspections trigger Fix workflows. Crew assignments flow from CRU to the project command center. Every module speaks the same language — because they share the same shell. No copy-pasting between apps. No dropped context.</p>
+        <p class="pillar-body">Issues from IX trigger FX workflows. Crew assignments flow from CX through OX to the project command center. Every module speaks the same language — because they share the same shell. No copy-pasting between apps. No dropped context.</p>
     </div>
     <div class="pillar p-two rv" style="--d:0.08s">
         <div class="pillar-num">02</div>
@@ -1303,19 +1321,19 @@
 <div class="section-rule" id="modules">
     <span class="rule-label">Modules</span>
     <div class="rule-line"></div>
-    <span class="rule-meta">05 Execution Layers</span>
+    <span class="rule-meta">06 Execution Layers</span>
 </div>
 
 <div class="modules">
 
-    <div class="module-row r-cru rv">
+    <div class="module-row r-cx rv">
         <span class="m-num">01</span>
         <div>
-            <div class="m-name cru">CRU</div>
-            <div class="m-cat">Workforce Operations</div>
+            <div class="m-name cx">CX</div>
+            <div class="m-cat">Workforce &amp; Field Scheduling</div>
         </div>
         <div class="m-body">
-            Schedule crews, track assignments, and manage field labor at scale. CRU makes staffing decisions predictable — from daily foreman lists to multi-week project plans. Role-aware from day one.
+            The daily driver for supers and foremen. CX handles crew scheduling, task assignments, and field work coordination — multi-week calendar, staffing requirements per task, conflict prevention, and a foreman mobile view built for the field. Real-time sync across all users. What gets built, who does it, and when — all in one place.
             <div class="m-tag">Roles &nbsp;—&nbsp; Superintendent &nbsp;·&nbsp; Foreman &nbsp;·&nbsp; PM</div>
         </div>
         <div class="m-status">
@@ -1323,48 +1341,48 @@
         </div>
     </div>
 
-    <div class="module-row r-fix rv">
+    <div class="module-row r-ox rv">
         <span class="m-num">02</span>
         <div>
-            <div class="m-name fix">Fix</div>
-            <div class="m-cat">Equipment Diagnostics</div>
+            <div class="m-name ox">OX</div>
+            <div class="m-cat">Operations</div>
         </div>
         <div class="m-body">
-            AI-assisted work order management for equipment. Open a ticket, get a recommended mechanic, approve the assignment. Every issue tied to an asset, every resolution logged to the activity stream.
-            <div class="m-tag">Roles &nbsp;—&nbsp; Mechanic &nbsp;·&nbsp; PM &nbsp;·&nbsp; Project Engineer</div>
+            Ops visibility for the job site. Pour schedules, maintenance status, and ops requests in a single view — so the PM, super, and engineer all see the same board. CX knows who's there. OX knows what's happening.
+            <div class="m-tag">Roles &nbsp;—&nbsp; PM &nbsp;·&nbsp; Superintendent &nbsp;·&nbsp; Project Engineer</div>
         </div>
         <div class="m-status">
             <span class="pill pill-active">Active</span>
         </div>
     </div>
 
-    <div class="module-row r-ins rv">
+    <div class="module-row r-ix rv">
         <span class="m-num">03</span>
         <div>
-            <div class="m-name ins">Inspect</div>
-            <div class="m-cat">Site Inspections</div>
+            <div class="m-name ix">IX</div>
+            <div class="m-cat">Equipment Inspections</div>
         </div>
         <div class="m-body">
-            Structured inspection flows that generate issues automatically. No clipboards. No lost forms. Every finding becomes a trackable action item — linked to an asset, a location, or an open work order.
-            <div class="m-tag">Roles &nbsp;—&nbsp; Project Engineer &nbsp;·&nbsp; Superintendent</div>
+            AI-assisted daily equipment inspections. Operators scan the machine via video — IX picks frames, flags issues, and generates a structured report. No clipboards. No lost forms. Every finding becomes a trackable action item linked to an asset or open work order.
+            <div class="m-tag">Roles &nbsp;—&nbsp; Superintendent &nbsp;·&nbsp; Project Engineer &nbsp;·&nbsp; Operator</div>
         </div>
         <div class="m-status">
             <span class="pill pill-soon">Roadmap</span>
         </div>
     </div>
 
-    <div class="module-row r-dat rv">
+    <div class="module-row r-fx rv">
         <span class="m-num">04</span>
         <div>
-            <div class="m-name dat">Datum</div>
-            <div class="m-cat">Geospatial Intelligence</div>
+            <div class="m-name fx">FX</div>
+            <div class="m-cat">Equipment Diagnostics</div>
         </div>
         <div class="m-body">
-            Field data tied to location. Understand where problems cluster, where your crews are, and what's happening on the ground. Location context flows through every module — assets, issues, and assignments are all zone-aware.
-            <div class="m-tag">Roles &nbsp;—&nbsp; PM &nbsp;·&nbsp; Owner &nbsp;·&nbsp; Project Engineer</div>
+            Operator-AI chat for troubleshooting equipment issues on the spot — reducing mechanic callouts before they're needed. When a work order does open, FX ties every issue to an asset and logs every resolution to the activity stream.
+            <div class="m-tag">Roles &nbsp;—&nbsp; Mechanic &nbsp;·&nbsp; PM &nbsp;·&nbsp; Project Engineer</div>
         </div>
         <div class="m-status">
-            <span class="pill pill-soon">Roadmap</span>
+            <span class="pill pill-active">Active</span>
         </div>
     </div>
 
@@ -1381,6 +1399,21 @@
         <div class="m-status">
             <span class="pill pill-ai">AI Agent</span>
             <span class="pill pill-soon">In Spec</span>
+        </div>
+    </div>
+
+    <div class="module-row r-dx rv">
+        <span class="m-num">06</span>
+        <div>
+            <div class="m-name dx">DX</div>
+            <div class="m-cat">Geospatial Intelligence</div>
+        </div>
+        <div class="m-body">
+            Field data tied to location. Upload plan sheets, overlay on satellite maps, and get GPS location on plans in the field. Understand where problems cluster, where crews are, and what's happening on the ground — all zone-aware.
+            <div class="m-tag">Roles &nbsp;—&nbsp; PM &nbsp;·&nbsp; Owner &nbsp;·&nbsp; Project Engineer</div>
+        </div>
+        <div class="m-status">
+            <span class="pill pill-soon">Roadmap</span>
         </div>
     </div>
 
@@ -1429,7 +1462,7 @@
                 <div class="wf-arrow"></div>
             </div>
             <div class="wf-title">Module</div>
-            <div class="wf-desc">Launch the right module with full context — Fix for equipment, CRU for crew, Inspect for field findings. No re-entry.</div>
+            <div class="wf-desc">Launch the right module with full context — FX for equipment, CX for crew, OX for operations. No re-entry.</div>
         </div>
 
         <div class="wf-step rv" style="--d:0.24s">
@@ -1485,9 +1518,9 @@
                 <td>Project Command Center, Issues</td>
                 <td>
                     <div class="role-tags">
-                        <span class="rtag hi">CRU</span>
-                        <span class="rtag hi">Inspect</span>
-                        <span class="rtag">Fix</span>
+                        <span class="rtag hi">CX</span>
+                        <span class="rtag hi">OX</span>
+                        <span class="rtag">IX</span>
                     </div>
                 </td>
                 <td>Project health and crew coordination</td>
@@ -1497,9 +1530,9 @@
                 <td>Issues, Assets</td>
                 <td>
                     <div class="role-tags">
-                        <span class="rtag hi">Fix</span>
-                        <span class="rtag hi">Datum</span>
-                        <span class="rtag">Inspect</span>
+                        <span class="rtag hi">FX</span>
+                        <span class="rtag hi">OX</span>
+                        <span class="rtag">DX</span>
                     </div>
                 </td>
                 <td>Asset tracking and technical resolution</td>
@@ -1509,7 +1542,8 @@
                 <td>Project, Crew Schedule</td>
                 <td>
                     <div class="role-tags">
-                        <span class="rtag hi">CRU</span>
+                        <span class="rtag hi">CX</span>
+                        <span class="rtag hi">OX</span>
                     </div>
                 </td>
                 <td>Daily crew placement and field oversight</td>
@@ -1519,7 +1553,7 @@
                 <td>Crew, Daily Schedule</td>
                 <td>
                     <div class="role-tags">
-                        <span class="rtag hi">CRU</span>
+                        <span class="rtag hi">CX</span>
                     </div>
                 </td>
                 <td>Shift-level execution and worker assignments</td>
@@ -1529,7 +1563,7 @@
                 <td>Work Orders</td>
                 <td>
                     <div class="role-tags">
-                        <span class="rtag hi">Fix</span>
+                        <span class="rtag hi">FX</span>
                         <span class="rtag hi">MX</span>
                     </div>
                 </td>
@@ -1543,18 +1577,22 @@
 <div class="section-rule" id="ai">
     <span class="rule-label">Intelligence</span>
     <div class="rule-line"></div>
-    <span class="rule-meta">AI Throughout</span>
+    <span class="rule-meta">IX · FX · MX</span>
 </div>
 
 <div class="ai-section">
     <div class="rv">
-        <div class="ai-label">MX Agent</div>
-        <h2 class="ai-h2">The assignment call,<br><em>made for you.</em></h2>
-        <p class="ai-body">The MX agent replaces the manual cognitive work that happens every time a work order lands — reading the job, checking who's qualified, who's available, and who's closest. It makes the recommendation. You make the call.</p>
+        <div class="ai-label">AI Throughout</div>
+        <h2 class="ai-h2">Not bolted on.<br><em>Built in.</em></h2>
+        <p class="ai-body">Three modules run on AI — each targeting a different point of friction in the field. IX uses vision to scan equipment and surface issues before they become downtime. FX gives operators an AI diagnostic chat to troubleshoot on the spot, cutting unnecessary callouts. MX handles the assignment decision — reading work orders, matching mechanics by skill and availability, and surfacing a recommendation with reasoning. You make the call.</p>
         <a href="#access" class="btn btn-ghost">Join the Waitlist</a>
     </div>
 
     <div class="ai-steps rv" style="--d:0.1s">
+        <div class="ai-step" style="padding-bottom: 16px; margin-bottom: 4px;">
+            <div class="ai-step-num" style="color: var(--mx);">MX</div>
+            <div class="ai-step-text" style="color: var(--text); font-size: 10px; letter-spacing: 1px; text-transform: uppercase;">The MX Assignment Loop</div>
+        </div>
         <div class="ai-step">
             <div class="ai-step-num">01</div>
             <div class="ai-step-text"><strong>Work order approved.</strong> The agent reads category, priority, estimated hours, needed-by date, and equipment ID.</div>
@@ -1634,11 +1672,12 @@
             <label for="interest">Which module matters most?</label>
             <select id="interest" name="interest">
                 <option value="" disabled selected>Select a module</option>
-                <option value="cru">CRU — Workforce Operations</option>
-                <option value="fix">Fix — Equipment Diagnostics</option>
-                <option value="inspect">Inspect — Site Inspections</option>
-                <option value="datum">Datum — Geospatial Intelligence</option>
+                <option value="cx">CX — Workforce &amp; Field Scheduling</option>
+                <option value="ox">OX — Operations</option>
+                <option value="ix">IX — Equipment Inspections</option>
+                <option value="fx">FX — Equipment Diagnostics</option>
                 <option value="mx">MX — AI Maintenance Agent</option>
+                <option value="dx">DX — Geospatial Intelligence</option>
                 <option value="all">All of the above</option>
             </select>
         </div>
