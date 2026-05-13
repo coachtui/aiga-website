@@ -562,6 +562,16 @@
         .mf-line { width: 36px; height: 1px; background: var(--dim); }
         .mf-text { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
 
+        /* ─── Consulting ─── */
+        .consulting-section {
+            padding: 100px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            border-top: 1px solid var(--border);
+        }
+
         /* ─── Contact ─── */
         .contact {
             padding: 100px 40px;
@@ -729,6 +739,7 @@
             .hero-right { padding: 72px 40px; min-height: 85vh; justify-content: flex-end; }
             .platform-row { grid-template-columns: 40px 160px 1fr auto; gap: 0 20px; }
             .p-desc { font-size: 10px; }
+            .consulting-section { grid-template-columns: 1fr; gap: 48px; }
             .contact { grid-template-columns: 1fr; gap: 48px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -758,6 +769,7 @@
             .p-desc { display: none; }
             .stats { padding: 0 20px; }
             .manifesto { padding: 72px 20px; }
+            .consulting-section { padding: 72px 20px; }
             .contact { padding: 72px 20px; }
             footer { padding: 24px 20px; }
         }
@@ -914,6 +926,29 @@
     </div>
 
 </div>
+
+<!-- Consulting -->
+<div class="section-rule" id="consulting">
+    <span class="rule-label">AI Workflow Consulting</span>
+    <div class="rule-line"></div>
+    <span class="rule-meta">Personally Delivered</span>
+</div>
+
+<section class="consulting-section">
+    <div class="rv">
+        <div class="ct-label">The Offering</div>
+        <h2 class="ct-h2">Where are you losing time to work that shouldn't need a human?</h2>
+        <p class="ct-sub">Most organizations aren't failing at AI — they haven't mapped where it actually fits. Tui works directly with your team to find the friction, assess where AI creates real leverage, and help you act on it. Any industry.</p>
+        <a href="mailto:info@aigaai.com?subject=AI Consulting" class="ct-email">Start a Conversation</a>
+    </div>
+    <div class="rv">
+        <div class="ct-options">
+            <a href="mailto:info@aigaai.com?subject=AI Consulting - Workflow Audit" class="ct-opt"><div class="ct-dot"></div><span><strong>Workflow Audit</strong> — Map where time actually goes and find the drag</span></a>
+            <a href="mailto:info@aigaai.com?subject=AI Consulting - AI Fit Assessment" class="ct-opt"><div class="ct-dot"></div><span><strong>AI Fit Assessment</strong> — Identify which problems AI solves vs. which need a process fix first</span></a>
+            <a href="mailto:info@aigaai.com?subject=AI Consulting - Implementation" class="ct-opt"><div class="ct-dot"></div><span><strong>Implementation</strong> — Recommend tools, guide adoption, or build something custom</span></a>
+        </div>
+    </div>
+</section>
 
 <!-- Stats -->
 <div class="section-rule" id="about">
