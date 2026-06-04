@@ -1,0 +1,957 @@
+# BedrockOS Legal Pages Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Create BedrockOS-specific Privacy Policy and Terms of Service pages, and update the BedrockOS landing page footer to link to both.
+
+**Architecture:** Three self-contained HTML files using the site's existing inline-style pattern. Both new legal pages clone `privacy.html`'s document layout and extend it with the BedrockOS nav (AIGA mark + product label breadcrumb). No shared CSS files, no build step — consistent with every other page in this codebase.
+
+**Tech Stack:** Vanilla HTML/CSS, same Google Fonts stack (Space Grotesk, Inter, IBM Plex Mono), static file serving.
+
+---
+
+## Task 1: Create `/bedrockos/privacy.html`
+
+**Files:**
+- Create: `bedrockos/privacy.html`
+
+- [ ] **Step 1: Create the file with this exact content**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — BedrockOS</title>
+    <meta name="description" content="Privacy Policy for the BedrockOS construction operations platform by AIGA LLC.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:       #060C08;
+            --surface:  #0C1510;
+            --surface2: #101C14;
+            --border:   #152018;
+            --border2:  #1E3226;
+            --text:     #ECEAE3;
+            --muted:    #6B8C76;
+            --dim:      #3A5844;
+            --accent:   #3DBA6E;
+
+            --fh: 'Space Grotesk', sans-serif;
+            --fb: 'Inter', sans-serif;
+            --fm: 'IBM Plex Mono', monospace;
+            --rlg: 12px;
+        }
+
+        body {
+            font-family: var(--fb);
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── FLOATING NAV ── */
+        .nav-shell {
+            position: fixed;
+            top: 18px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 28px;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        header {
+            background: rgba(6,12,8,0.72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border2);
+            border-radius: var(--rlg);
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px 0 18px;
+            width: 100%;
+            max-width: 920px;
+            pointer-events: all;
+            gap: 16px;
+        }
+
+        .hd-left { display: flex; align-items: center; gap: 12px; }
+
+        .hd-mark {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            color: var(--text);
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: color 0.2s;
+        }
+        .hd-mark:hover { color: var(--accent); }
+
+        .hd-product {
+            font-family: var(--fh);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: var(--text);
+            text-decoration: none;
+            padding-left: 12px;
+            border-left: 1px solid var(--border2);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        nav a {
+            font-family: var(--fb);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: color 0.15s, background 0.15s;
+        }
+
+        nav a:hover { color: var(--text); background: var(--surface2); }
+
+        .nav-cta {
+            background: var(--accent) !important;
+            color: #060C08 !important;
+            font-weight: 600 !important;
+            border-radius: 6px !important;
+            margin-left: 6px;
+        }
+        .nav-cta:hover { opacity: 0.88; background: var(--accent) !important; }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            padding: 140px 64px 72px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-eyebrow {
+            font-family: var(--fm);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: 16px;
+        }
+
+        .page-h1 {
+            font-family: var(--fh);
+            font-weight: 600;
+            font-size: clamp(36px, 5vw, 64px);
+            letter-spacing: -1.5px;
+            line-height: 1;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .page-meta {
+            font-family: var(--fm);
+            font-size: 12px;
+            color: var(--dim);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── CONTENT ── */
+        .content {
+            max-width: 720px;
+            padding: 72px 64px 100px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-family: var(--fm);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: 14px;
+        }
+
+        .subsection-h {
+            font-family: var(--fh);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 20px 0 8px;
+        }
+
+        .section p {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .section p:last-child { margin-bottom: 0; }
+
+        .section ul {
+            margin: 10px 0 12px 0;
+            padding-left: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .section ul li {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.7;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .section ul li::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--dim);
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        a.inline {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border2);
+            transition: border-color 0.15s, color 0.15s;
+        }
+        a.inline:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 28px 64px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .ft-mark { color: var(--dim); text-decoration: none; transition: color 0.2s; }
+        .ft-mark:hover { color: var(--text); }
+
+        .ft-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ft-links a {
+            font-family: var(--fb);
+            font-size: 13px;
+            color: var(--dim);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .ft-links a:hover { color: var(--muted); }
+
+        .ft-copy {
+            font-family: var(--fm);
+            font-size: 11px;
+            color: var(--dim);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .page-hero { padding: 110px 28px 56px; }
+            .content { padding: 56px 28px 80px; }
+            footer { padding: 24px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
+            nav .hide-mobile { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-shell">
+    <header>
+        <div class="hd-left">
+            <a href="/" class="hd-mark" aria-label="AIGA Home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" width="26" height="26" aria-hidden="true">
+                    <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+                    <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+                    <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+                    <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+                </svg>
+            </a>
+            <a href="/bedrockos/" class="hd-product">BedrockOS</a>
+        </div>
+        <nav>
+            <a href="/bedrockos/#modules" class="hide-mobile">Modules</a>
+            <a href="/bedrockos/#connected" class="hide-mobile">How it connects</a>
+            <a href="/bedrockos/#platform" class="hide-mobile">Platform</a>
+            <a href="/bedrockos/#access" class="nav-cta">Get Access</a>
+        </nav>
+    </header>
+</div>
+
+<div class="page-hero">
+    <div class="page-eyebrow">BedrockOS · Legal</div>
+    <h1 class="page-h1">Privacy Policy</h1>
+    <p class="page-meta">AIGA LLC &nbsp;·&nbsp; Effective June 1, 2026</p>
+</div>
+
+<div class="content">
+
+    <div class="section">
+        <div class="section-label">Overview</div>
+        <p>AIGA LLC ("AIGA," "we," "our," or "us") operates the BedrockOS construction operations platform (the "Service"). This Privacy Policy explains how we collect, use, disclose, and protect information about you when you access or use the Service.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">1 · Information We Collect</div>
+        <div class="subsection-h">Account and Organization Data</div>
+        <p>When you create an account or your organization is provisioned on BedrockOS, we collect:</p>
+        <ul>
+            <li>Name, email address, and job title</li>
+            <li>Organization name, address, and billing information</li>
+            <li>Role and permission assignments within your organization</li>
+        </ul>
+        <div class="subsection-h">Operational Data</div>
+        <p>As you use the Service, we collect data you enter or upload, including:</p>
+        <ul>
+            <li>Project information, schedules, and work orders</li>
+            <li>Equipment records, maintenance logs, and inspection reports</li>
+            <li>Personnel and crew assignments</li>
+            <li>Contracts, subcontracts, and associated documents</li>
+            <li>Daily field reports, pour schedules, and safety records</li>
+            <li>Photos, files, and attachments you upload</li>
+        </ul>
+        <div class="subsection-h">Usage and Technical Data</div>
+        <p>We automatically collect certain technical information when you use the Service:</p>
+        <ul>
+            <li>IP address, browser type, and device information</li>
+            <li>Pages visited, features used, and actions taken within the Service</li>
+            <li>Log data and error reports</li>
+            <li>Cookies and similar tracking technologies</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-label">2 · How We Use Your Information</div>
+        <p>We use the information we collect to:</p>
+        <ul>
+            <li>Provide, maintain, and improve the Service</li>
+            <li>Authenticate users and enforce access controls</li>
+            <li>Process transactions and send billing-related communications</li>
+            <li>Send operational notifications (e.g., work order updates, alerts)</li>
+            <li>Respond to support requests and troubleshoot issues</li>
+            <li>Detect and prevent fraud, abuse, or security incidents</li>
+            <li>Generate aggregated, anonymized analytics about Service usage</li>
+            <li>Comply with legal obligations</li>
+        </ul>
+        <p>We do not sell your personal information or operational data to third parties. We do not use your data to train AI models without your explicit consent.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">3 · Data Sharing and Disclosure</div>
+        <p>We may share your information only in the following circumstances:</p>
+        <ul>
+            <li><strong>Within your organization:</strong> Users within your organization can access data according to their assigned roles and permissions.</li>
+            <li><strong>Service providers:</strong> We use trusted third-party vendors (e.g., cloud infrastructure, payment processors) who process data on our behalf under data processing agreements.</li>
+            <li><strong>Legal requirements:</strong> We may disclose information if required by law, court order, or to protect the rights and safety of AIGA, our users, or the public.</li>
+            <li><strong>Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-label">4 · Data Retention</div>
+        <p>We retain your account and operational data for the duration of your subscription and for a reasonable period thereafter to allow for data export and legal compliance. You may request deletion of your data by contacting us. Certain data may be retained as required by law or for legitimate business purposes (e.g., billing records).</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">5 · Security</div>
+        <p>AIGA uses industry-standard security measures to protect your data, including encryption in transit (TLS), encryption at rest, role-based access controls, and audit logging. File uploads are scanned for malicious content prior to storage. Despite these measures, no system is completely secure — we encourage you to use strong passwords and report any suspected security issues promptly.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">6 · Your Rights</div>
+        <p>Depending on your jurisdiction, you may have the right to:</p>
+        <ul>
+            <li>Access the personal information we hold about you</li>
+            <li>Correct inaccurate or incomplete information</li>
+            <li>Request deletion of your personal information</li>
+            <li>Object to or restrict certain processing activities</li>
+            <li>Data portability (receive your data in a structured, machine-readable format)</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at <a href="mailto:privacy@aigaai.com" class="inline">privacy@aigaai.com</a>. We will respond within 30 days.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">7 · Cookies</div>
+        <p>We use session cookies required for authentication and functionality. We do not use third-party advertising cookies. You can configure your browser to block cookies, but doing so may prevent you from using the Service.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">8 · Children's Privacy</div>
+        <p>The Service is not directed to individuals under 18 years of age. We do not knowingly collect personal information from minors.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">9 · Changes to This Policy</div>
+        <p>We may update this Privacy Policy from time to time. When we make material changes, we will notify you by email or by posting a prominent notice in the Service at least 14 days before the change takes effect. Your continued use of the Service after the effective date constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">10 · Contact</div>
+        <p>If you have questions or concerns about this Privacy Policy, please contact us at:</p>
+        <p>AIGA LLC<br><a href="mailto:privacy@aigaai.com" class="inline">privacy@aigaai.com</a></p>
+    </div>
+
+</div>
+
+<footer>
+    <a href="/" class="ft-mark" aria-label="AIGA">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+            <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+            <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+            <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+        </svg>
+    </a>
+    <div class="ft-links">
+        <a href="/bedrockos/">BedrockOS</a>
+        <a href="/bedrockos/#modules">Modules</a>
+        <a href="/bedrockos/privacy.html">Privacy</a>
+        <a href="/bedrockos/tos.html">Terms</a>
+    </div>
+    <span class="ft-copy">&copy; 2026 AIGA LLC. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
+```
+
+- [ ] **Step 2: Open in browser to verify**
+
+```bash
+open /Users/tui/Desktop/aiga-website/bedrockos/privacy.html
+```
+
+Check: floating nav visible, AIGA mark + BedrockOS label in top-left, all 10 sections render correctly, footer shows BedrockOS / Modules / Privacy / Terms links.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add bedrockos/privacy.html
+git commit -m "feat: add BedrockOS privacy policy page"
+```
+
+---
+
+## Task 2: Create `/bedrockos/tos.html`
+
+**Files:**
+- Create: `bedrockos/tos.html`
+
+- [ ] **Step 1: Create the file with this exact content**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — BedrockOS</title>
+    <meta name="description" content="Terms of Service for the BedrockOS construction operations platform by AIGA LLC.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:       #060C08;
+            --surface:  #0C1510;
+            --surface2: #101C14;
+            --border:   #152018;
+            --border2:  #1E3226;
+            --text:     #ECEAE3;
+            --muted:    #6B8C76;
+            --dim:      #3A5844;
+            --accent:   #3DBA6E;
+
+            --fh: 'Space Grotesk', sans-serif;
+            --fb: 'Inter', sans-serif;
+            --fm: 'IBM Plex Mono', monospace;
+            --rlg: 12px;
+        }
+
+        body {
+            font-family: var(--fb);
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── FLOATING NAV ── */
+        .nav-shell {
+            position: fixed;
+            top: 18px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 28px;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        header {
+            background: rgba(6,12,8,0.72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border2);
+            border-radius: var(--rlg);
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px 0 18px;
+            width: 100%;
+            max-width: 920px;
+            pointer-events: all;
+            gap: 16px;
+        }
+
+        .hd-left { display: flex; align-items: center; gap: 12px; }
+
+        .hd-mark {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            color: var(--text);
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: color 0.2s;
+        }
+        .hd-mark:hover { color: var(--accent); }
+
+        .hd-product {
+            font-family: var(--fh);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: var(--text);
+            text-decoration: none;
+            padding-left: 12px;
+            border-left: 1px solid var(--border2);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        nav a {
+            font-family: var(--fb);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: color 0.15s, background 0.15s;
+        }
+
+        nav a:hover { color: var(--text); background: var(--surface2); }
+
+        .nav-cta {
+            background: var(--accent) !important;
+            color: #060C08 !important;
+            font-weight: 600 !important;
+            border-radius: 6px !important;
+            margin-left: 6px;
+        }
+        .nav-cta:hover { opacity: 0.88; background: var(--accent) !important; }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            padding: 140px 64px 72px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-eyebrow {
+            font-family: var(--fm);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: 16px;
+        }
+
+        .page-h1 {
+            font-family: var(--fh);
+            font-weight: 600;
+            font-size: clamp(36px, 5vw, 64px);
+            letter-spacing: -1.5px;
+            line-height: 1;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .page-meta {
+            font-family: var(--fm);
+            font-size: 12px;
+            color: var(--dim);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── CONTENT ── */
+        .content {
+            max-width: 720px;
+            padding: 72px 64px 100px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-family: var(--fm);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: 14px;
+        }
+
+        .section p {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .section p:last-child { margin-bottom: 0; }
+
+        .section ul {
+            margin: 10px 0 12px 0;
+            padding-left: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .section ul li {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.7;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .section ul li::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--dim);
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        a.inline {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border2);
+            transition: border-color 0.15s, color 0.15s;
+        }
+        a.inline:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 28px 64px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .ft-mark { color: var(--dim); text-decoration: none; transition: color 0.2s; }
+        .ft-mark:hover { color: var(--text); }
+
+        .ft-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ft-links a {
+            font-family: var(--fb);
+            font-size: 13px;
+            color: var(--dim);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .ft-links a:hover { color: var(--muted); }
+
+        .ft-copy {
+            font-family: var(--fm);
+            font-size: 11px;
+            color: var(--dim);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .page-hero { padding: 110px 28px 56px; }
+            .content { padding: 56px 28px 80px; }
+            footer { padding: 24px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
+            nav .hide-mobile { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-shell">
+    <header>
+        <div class="hd-left">
+            <a href="/" class="hd-mark" aria-label="AIGA Home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" width="26" height="26" aria-hidden="true">
+                    <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+                    <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+                    <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+                    <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+                </svg>
+            </a>
+            <a href="/bedrockos/" class="hd-product">BedrockOS</a>
+        </div>
+        <nav>
+            <a href="/bedrockos/#modules" class="hide-mobile">Modules</a>
+            <a href="/bedrockos/#connected" class="hide-mobile">How it connects</a>
+            <a href="/bedrockos/#platform" class="hide-mobile">Platform</a>
+            <a href="/bedrockos/#access" class="nav-cta">Get Access</a>
+        </nav>
+    </header>
+</div>
+
+<div class="page-hero">
+    <div class="page-eyebrow">BedrockOS · Legal</div>
+    <h1 class="page-h1">Terms of Service</h1>
+    <p class="page-meta">AIGA LLC &nbsp;·&nbsp; Effective June 1, 2026</p>
+</div>
+
+<div class="content">
+
+    <div class="section">
+        <div class="section-label">Overview</div>
+        <p>These Terms of Service ("Terms") govern your access to and use of the BedrockOS platform and services (the "Service") provided by AIGA LLC ("AIGA," "we," or "us"). By accessing or using the Service, you agree to be bound by these Terms. If you do not agree, do not use the Service.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">1 · Eligibility and Accounts</div>
+        <p>The Service is intended for use by businesses and their authorized personnel. By using the Service, you represent that you are at least 18 years old and are authorized to enter into these Terms on behalf of your organization.</p>
+        <p>You are responsible for maintaining the confidentiality of your login credentials and for all activity that occurs under your account. Notify us immediately at <a href="mailto:support@aigaai.com" class="inline">support@aigaai.com</a> if you suspect unauthorized access.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">2 · Subscription and Payment</div>
+        <p>Access to the Service requires a paid subscription. Subscription fees are billed in advance on a monthly or annual basis, as selected at the time of purchase. All fees are non-refundable except as required by law or as otherwise stated in your order.</p>
+        <p>We may change subscription pricing with at least 30 days' written notice. Continued use of the Service after a price change takes effect constitutes your acceptance of the new pricing.</p>
+        <p>Failure to pay may result in suspension or termination of your access to the Service.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">3 · Acceptable Use</div>
+        <p>You agree to use the Service only for lawful purposes and in accordance with these Terms. You must not:</p>
+        <ul>
+            <li>Use the Service to upload, store, or transmit any content that is unlawful, harmful, or infringes third-party rights</li>
+            <li>Attempt to gain unauthorized access to any part of the Service or its infrastructure</li>
+            <li>Reverse engineer, decompile, or disassemble any part of the Service</li>
+            <li>Use automated tools to scrape, crawl, or extract data from the Service</li>
+            <li>Interfere with or disrupt the integrity or performance of the Service</li>
+            <li>Resell, sublicense, or otherwise make the Service available to third parties without our written consent</li>
+            <li>Upload files containing malicious code, viruses, or other harmful content</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-label">4 · Your Data</div>
+        <p>You retain all ownership rights to the data, files, and content you upload to or create within the Service ("Customer Data"). You grant AIGA a limited license to host, process, and display Customer Data solely as necessary to provide the Service.</p>
+        <p>You are solely responsible for the accuracy, legality, and appropriateness of all Customer Data. AIGA does not review Customer Data and has no obligation to do so.</p>
+        <p>Upon termination, you may export your Customer Data for up to 30 days following the termination date. After that period, we may delete your Customer Data without further notice.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">5 · Intellectual Property</div>
+        <p>The Service, including all software, interfaces, documentation, and branding, is owned by AIGA and protected by intellectual property laws. These Terms do not grant you any rights to AIGA's intellectual property except the limited right to use the Service as permitted herein.</p>
+        <p>If you provide feedback or suggestions about the Service, you grant AIGA a perpetual, irrevocable, royalty-free license to use that feedback without restriction.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">6 · Confidentiality</div>
+        <p>Each party agrees to keep confidential any non-public information disclosed by the other party in connection with the Service and to use such information only to fulfill its obligations under these Terms. This obligation does not apply to information that is or becomes publicly available through no fault of the receiving party.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">7 · Warranties and Disclaimer</div>
+        <p>AIGA will use commercially reasonable efforts to provide the Service and will notify you of planned maintenance. The Service is provided "as is" and "as available."</p>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, BEDROCKOS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE FROM HARMFUL COMPONENTS.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">8 · Limitation of Liability</div>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, BEDROCKOS'S TOTAL LIABILITY TO YOU FOR ANY CLAIMS ARISING OUT OF OR RELATED TO THE SERVICE SHALL NOT EXCEED THE FEES YOU PAID TO BEDROCKOS IN THE THREE MONTHS PRECEDING THE CLAIM. IN NO EVENT SHALL BEDROCKOS BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">9 · Indemnification</div>
+        <p>You agree to indemnify, defend, and hold harmless AIGA and its officers, directors, employees, and agents from any claims, damages, liabilities, and expenses (including reasonable attorneys' fees) arising out of your use of the Service, your Customer Data, or your violation of these Terms.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">10 · Term and Termination</div>
+        <p>These Terms remain in effect for the duration of your subscription. Either party may terminate for convenience with 30 days' written notice. We may suspend or terminate your access immediately if you violate these Terms, fail to pay fees, or if we reasonably believe suspension is necessary to prevent harm to the Service or other users.</p>
+        <p>Upon termination, your right to use the Service ceases immediately. Sections 4, 5, 6, 7, 8, 9, and 12 survive termination.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">11 · Modifications</div>
+        <p>We may modify the Service or these Terms at any time. For material changes to these Terms, we will provide at least 14 days' notice by email or in-app notification. Your continued use of the Service after the effective date of a modification constitutes acceptance of the updated Terms.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">12 · Governing Law and Disputes</div>
+        <p>These Terms are governed by the laws of the State of California, without regard to its conflict of law provisions. Any disputes arising from these Terms or the Service shall be resolved by binding arbitration administered by JAMS in San Francisco, California, except that either party may seek injunctive relief in a court of competent jurisdiction.</p>
+        <p>You waive any right to participate in a class action lawsuit or class-wide arbitration.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">13 · General</div>
+        <p>These Terms, together with our <a href="/bedrockos/privacy.html" class="inline">Privacy Policy</a> and any applicable order forms, constitute the entire agreement between you and AIGA regarding the Service. If any provision is found unenforceable, the remaining provisions remain in full effect. Our failure to enforce any right or provision of these Terms shall not be deemed a waiver.</p>
+        <p>You may not assign your rights under these Terms without our prior written consent. AIGA may assign these Terms in connection with a merger, acquisition, or sale of assets.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-label">14 · Contact</div>
+        <p>Questions about these Terms? Contact us at:</p>
+        <p>AIGA LLC<br><a href="mailto:legal@aigaai.com" class="inline">legal@aigaai.com</a></p>
+    </div>
+
+</div>
+
+<footer>
+    <a href="/" class="ft-mark" aria-label="AIGA">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 368" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path d="M0 0 H164 V164 H122 V116 H42 V164 H0 Z M42 42 V78 H122 V42 Z"/>
+            <path d="M204 0 H368 V42 H307 V122 H368 V164 H204 V122 H265 V42 H204 Z"/>
+            <path d="M0 204 H164 V246 H42 V326 H122 V294 H86 V264 H164 V368 H0 Z"/>
+            <path d="M204 204 H368 V368 H326 V320 H246 V368 H204 Z M246 246 V282 H326 V246 Z"/>
+        </svg>
+    </a>
+    <div class="ft-links">
+        <a href="/bedrockos/">BedrockOS</a>
+        <a href="/bedrockos/#modules">Modules</a>
+        <a href="/bedrockos/privacy.html">Privacy</a>
+        <a href="/bedrockos/tos.html">Terms</a>
+    </div>
+    <span class="ft-copy">&copy; 2026 AIGA LLC. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
+```
+
+- [ ] **Step 2: Open in browser to verify**
+
+```bash
+open /Users/tui/Desktop/aiga-website/bedrockos/tos.html
+```
+
+Check: same layout as privacy page, all 14 sections render, "Privacy Policy" link in Section 13 is clickable and goes to `/bedrockos/privacy.html`.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add bedrockos/tos.html
+git commit -m "feat: add BedrockOS terms of service page"
+```
+
+---
+
+## Task 3: Update `bedrockos/index.html` Footer
+
+**Files:**
+- Modify: `bedrockos/index.html:1340`
+
+Current footer links (line ~1340):
+
+```html
+        <a href="/privacy.html">Privacy</a>
+```
+
+- [ ] **Step 1: Update the footer links**
+
+Replace the existing footer `ft-links` block (currently has 4 links) with:
+
+```html
+    <div class="ft-links">
+        <a href="/">AIGA Home</a>
+        <a href="#modules">Modules</a>
+        <a href="#access">Get Access</a>
+        <a href="/bedrockos/privacy.html">Privacy</a>
+        <a href="/bedrockos/tos.html">Terms</a>
+    </div>
+```
+
+- [ ] **Step 2: Open in browser to verify**
+
+```bash
+open /Users/tui/Desktop/aiga-website/bedrockos/index.html
+```
+
+Scroll to footer. Confirm five links appear: AIGA Home, Modules, Get Access, Privacy, Terms. Click Privacy — should open `/bedrockos/privacy.html`. Click Terms — should open `/bedrockos/tos.html`.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add bedrockos/index.html
+git commit -m "feat: add privacy and terms links to BedrockOS footer"
+```
+
+---
+
+## Task 4: Push to Origin
+
+- [ ] **Step 1: Push all commits**
+
+```bash
+git push origin main
+```
+
+Expected: three new commits pushed, no conflicts (branch was clean at start of this plan).
