@@ -1075,7 +1075,7 @@
         </div>
 
         <div class="spine rv">
-            <div class="spine-cell m-cx"><span class="spine-dot"></span><span class="spine-name">Crew</span><span class="spine-maturity">Live</span></div>
+            <div class="spine-cell m-cx"><span class="spine-dot"></span><span class="spine-name">Field Management</span><span class="spine-maturity">Live</span></div>
             <div class="spine-cell m-mx"><span class="spine-dot"></span><span class="spine-name">Maintenance</span><span class="spine-maturity">Live</span></div>
             <div class="spine-cell m-ox"><span class="spine-dot"></span><span class="spine-name">Operations</span><span class="spine-maturity">Live</span></div>
             <div class="spine-cell m-fx"><span class="spine-dot"></span><span class="spine-name">AI Mechanic</span><span class="spine-maturity">Live</span></div>
@@ -1095,7 +1095,7 @@
         <!-- CX -->
         <div class="module-dive m-cx rv">
             <div class="md-text">
-                <div class="md-badge"><span class="md-dot"></span><span class="md-cat">Crew &amp; Scheduling</span></div>
+                <div class="md-badge"><span class="md-dot"></span><span class="md-cat">Field Management</span></div>
                 <h3 class="md-title">Put the right people on the right job, every week.</h3>
                 <p class="md-desc">Roster the whole workforce, build named crews, and assign people across projects week by week. Run a four-week site calendar and a scrollable Gantt — and bulk-import tasks straight from a CSV.</p>
                 <div class="md-feats">
@@ -1120,7 +1120,7 @@
                 <div class="md-feats">
                     <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Personal mechanic queue ("My Work")</div>
                     <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Shop-lead triage + work-order assignment</div>
-                    <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Readiness feeds OX pour confidence</div>
+                    <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Readiness feeds Operations pour confidence</div>
                 </div>
             </div>
             <div class="shot">
@@ -1135,11 +1135,11 @@
             <div class="md-text">
                 <div class="md-badge"><span class="md-dot"></span><span class="md-cat">Operations</span></div>
                 <h3 class="md-title">Coordinate a pour without a single phone call.</h3>
-                <p class="md-desc">Dispatch field requests — masons, pump trucks, equipment — and coordinate company-wide concrete pours across list, calendar, and approval views. The request pulls live crew availability from CX and spins up MX work orders where it needs to.</p>
+                <p class="md-desc">Dispatch field requests — masons, pump trucks, equipment — and coordinate company-wide concrete pours across list, calendar, and approval views. The request pulls live crew availability from Field Management and spins up Maintenance work orders where it needs to.</p>
                 <div class="md-feats">
                     <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Field request dispatch (masons, pumps, equipment)</div>
                     <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Company-wide pour calendar + approvals</div>
-                    <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Pulls CX availability, spawns MX work</div>
+                    <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Pulls Field Management availability, spawns Maintenance work</div>
                 </div>
             </div>
             <div class="shot">
@@ -1154,7 +1154,7 @@
             <div class="md-text">
                 <div class="md-badge"><span class="md-dot"></span><span class="md-cat">AI Mechanic</span></div>
                 <h3 class="md-title">Diagnose the machine before you call the shop.</h3>
-                <p class="md-desc">AI Mechanic is an AI diagnostic built for operators. Describe what the machine is doing — the noise, the warning light, the way it's running — and it works toward the likely cause. Plenty of issues turn out to be a quick fix the operator can handle on the spot. When it isn't, one tap escalates to the shop and opens an MX work order with the diagnosis already attached.</p>
+                <p class="md-desc">AI Mechanic is an AI diagnostic built for operators. Describe what the machine is doing — the noise, the warning light, the way it's running — and it works toward the likely cause. Plenty of issues turn out to be a quick fix the operator can handle on the spot. When it isn't, one tap escalates to the shop and opens a Maintenance work order with the diagnosis already attached.</p>
                 <div class="md-feats">
                     <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Operator describes the symptom in plain language</div>
                     <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>AI suggests likely causes and quick field fixes</div>
@@ -1209,7 +1209,7 @@
         <div class="flow rv">
             <div class="flow-node"><span class="flow-code n-ox">Ops</span><span class="flow-label"><strong>Pour request</strong>being planned</span></div>
             <div class="flow-arrow flow-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span class="flow-arrow-label">pulls live</span></div>
-            <div class="flow-node"><span class="flow-code n-cx">Crew</span><span class="flow-label"><strong>Crew availability</strong>before it's approved</span></div>
+            <div class="flow-node"><span class="flow-code n-cx">Field Mgmt</span><span class="flow-label"><strong>Field Management</strong>before it's approved</span></div>
             <div class="flow-arrow flow-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span class="flow-arrow-label">spawns</span></div>
             <div class="flow-node"><span class="flow-code n-mx">Maint</span><span class="flow-label"><strong>Work order</strong>if equipment needs it</span></div>
         </div>
@@ -1250,11 +1250,7 @@
                 <div class="shell-name">Field Guide</div>
                 <div class="shell-desc">A construction reference library by task type, plus field calculators.</div>
             </div>
-            <div class="shell-card rv">
-                <svg class="shell-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                <div class="shell-name">Contracts</div>
-                <div class="shell-desc">Purchase orders and subcontracts with line items, totals, status flow, and attachments. Role-gated.</div>
-            </div>
+
             <div class="shell-card rv">
                 <svg class="shell-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 <div class="shell-name">Back Office</div>
