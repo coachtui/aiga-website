@@ -519,25 +519,25 @@
             border-color: var(--mc, var(--border2));
         }
 
-        .spine-code {
-            font-family: var(--fh);
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: var(--mc, var(--text));
+        .spine-dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--mc, var(--accent));
         }
 
         .spine-name {
-            font-family: var(--fm);
-            font-size: 9px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--dim);
+            font-family: var(--fh);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            color: var(--text);
             text-align: center;
         }
 
-        .spine-cell.partial .spine-code,
-        .spine-cell.stub .spine-code { opacity: 0.55; }
+        .spine-cell.partial .spine-dot,
+        .spine-cell.stub .spine-dot { opacity: 0.45; }
+        .spine-cell.partial .spine-name,
+        .spine-cell.stub .spine-name { color: var(--dim); }
 
         .spine-maturity {
             font-family: var(--fm);
@@ -591,18 +591,11 @@
             margin-bottom: 20px;
         }
 
-        .md-code {
-            font-family: var(--fh);
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: #060C08;
+        .md-dot {
+            width: 16px; height: 16px;
+            border-radius: 50%;
             background: var(--mc, var(--accent));
-            width: 44px; height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--r);
+            flex-shrink: 0;
         }
 
         .md-cat {
@@ -675,14 +668,17 @@
 
         .flow-code {
             font-family: var(--fh);
-            font-size: 18px;
+            font-size: 12px;
             font-weight: 700;
+            letter-spacing: -0.2px;
             color: #060C08;
             background: var(--nc, var(--accent));
-            width: 40px; height: 40px;
+            min-width: 40px; height: 30px;
+            padding: 0 13px;
             display: flex; align-items: center; justify-content: center;
-            border-radius: var(--r);
+            border-radius: 100px;
             flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .flow-label {
@@ -732,7 +728,7 @@
         /* ── SHELL FEATURES ── */
         .shell-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 12px;
             margin-top: 48px;
         }
@@ -994,7 +990,7 @@
     <div class="hero-inner">
         <div class="hero-tag"><span class="hero-tag-dot"></span> Construction Operating System</div>
         <h1 class="hero-h1">One OS for the field.<br><span class="accent">Not five apps that don't talk.</span></h1>
-        <p class="hero-sub">BedrockOS coordinates crews, equipment, concrete pours, and maintenance from a single role-aware system. Built by people who've run the jobs — and run on a live $500M project today.</p>
+        <p class="hero-sub">BedrockOS runs scheduling, maintenance, safety, and operations from a single role-aware system. Built by people who've run the jobs — and run on a live $500M project today.</p>
         <div class="hero-ctas">
             <a href="#access" class="btn btn-primary">Get Access</a>
             <a href="#modules" class="btn btn-outline">See the modules</a>
@@ -1005,7 +1001,7 @@
                     <span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span>
                     <span class="shot-url">/dashboard</span>
                 </div>
-                <img src="screens/dashboard-dark.png" alt="BedrockOS dashboard showing active projects, open issues, alerts, and the module launchpad for the demo project">
+                <img src="screens/dashboard-dark.png" alt="BedrockOS dashboard showing schedule health, open issues, alerts, today's crews on site, and the two-week look-ahead for the demo project">
 
             </div>
         </div>
@@ -1075,17 +1071,17 @@
         <div class="sec-narrow rv" style="margin-left:0;">
             <div class="sec-eyebrow">The modules</div>
             <h2 class="sec-title">Seven disciplines. One spine.</h2>
-            <p class="sec-lede">Each module carries a two-letter code in the nav. Unlock what your org needs — they're built to work alone and together.</p>
+            <p class="sec-lede">Unlock what your org needs — each module is built to work alone and together.</p>
         </div>
 
         <div class="spine rv">
-            <div class="spine-cell m-cx"><span class="spine-code">CX</span><span class="spine-name">Crew</span><span class="spine-maturity">Live</span></div>
-            <div class="spine-cell m-mx"><span class="spine-code">MX</span><span class="spine-name">Maintenance</span><span class="spine-maturity">Live</span></div>
-            <div class="spine-cell m-ox"><span class="spine-code">OX</span><span class="spine-name">Operations</span><span class="spine-maturity">Live</span></div>
-            <div class="spine-cell m-fx"><span class="spine-code">FX</span><span class="spine-name">Diagnostics</span><span class="spine-maturity">Live</span></div>
-            <div class="spine-cell m-sx partial"><span class="spine-code">SX</span><span class="spine-name">Safety</span><span class="spine-maturity">Building</span></div>
-            <div class="spine-cell m-ix partial"><span class="spine-code">IX</span><span class="spine-name">Inspect</span><span class="spine-maturity">Building</span></div>
-            <div class="spine-cell m-dx stub"><span class="spine-code">DX</span><span class="spine-name">Datum</span><span class="spine-maturity">Roadmap</span></div>
+            <div class="spine-cell m-cx"><span class="spine-dot"></span><span class="spine-name">Crew</span><span class="spine-maturity">Live</span></div>
+            <div class="spine-cell m-mx"><span class="spine-dot"></span><span class="spine-name">Maintenance</span><span class="spine-maturity">Live</span></div>
+            <div class="spine-cell m-ox"><span class="spine-dot"></span><span class="spine-name">Operations</span><span class="spine-maturity">Live</span></div>
+            <div class="spine-cell m-fx"><span class="spine-dot"></span><span class="spine-name">AI Mechanic</span><span class="spine-maturity">Live</span></div>
+            <div class="spine-cell m-sx"><span class="spine-dot"></span><span class="spine-name">Safety</span><span class="spine-maturity">Live</span></div>
+            <div class="spine-cell m-ix partial"><span class="spine-dot"></span><span class="spine-name">Inspections</span><span class="spine-maturity">Building</span></div>
+            <div class="spine-cell m-dx stub"><span class="spine-dot"></span><span class="spine-name">Layout</span><span class="spine-maturity">Roadmap</span></div>
         </div>
 
         <div class="spine-legend rv">
@@ -1099,7 +1095,7 @@
         <!-- CX -->
         <div class="module-dive m-cx rv">
             <div class="md-text">
-                <div class="md-badge"><span class="md-code">CX</span><span class="md-cat">Crew / Scheduling</span></div>
+                <div class="md-badge"><span class="md-dot"></span><span class="md-cat">Crew &amp; Scheduling</span></div>
                 <h3 class="md-title">Put the right people on the right job, every week.</h3>
                 <p class="md-desc">Roster the whole workforce, build named crews, and assign people across projects week by week. Run a four-week site calendar and a scrollable Gantt — and bulk-import tasks straight from a CSV.</p>
                 <div class="md-feats">
@@ -1118,7 +1114,7 @@
         <!-- MX -->
         <div class="module-dive m-mx rv">
             <div class="md-text">
-                <div class="md-badge"><span class="md-code">MX</span><span class="md-cat">Maintenance</span></div>
+                <div class="md-badge"><span class="md-dot"></span><span class="md-cat">Maintenance</span></div>
                 <h3 class="md-title">Every machine accounted for — and ready when the pour is.</h3>
                 <p class="md-desc">Mechanics work a personal "My Work" queue. Shop leads triage and assign work orders. And equipment readiness doesn't sit in a silo — it feeds straight into pour planning downstream.</p>
                 <div class="md-feats">
@@ -1137,7 +1133,7 @@
         <!-- OX -->
         <div class="module-dive m-ox rv">
             <div class="md-text">
-                <div class="md-badge"><span class="md-code">OX</span><span class="md-cat">Operations</span></div>
+                <div class="md-badge"><span class="md-dot"></span><span class="md-cat">Operations</span></div>
                 <h3 class="md-title">Coordinate a pour without a single phone call.</h3>
                 <p class="md-desc">Dispatch field requests — masons, pump trucks, equipment — and coordinate company-wide concrete pours across list, calendar, and approval views. The request pulls live crew availability from CX and spins up MX work orders where it needs to.</p>
                 <div class="md-feats">
@@ -1156,9 +1152,9 @@
         <!-- FX -->
         <div class="module-dive m-fx rv">
             <div class="md-text">
-                <div class="md-badge"><span class="md-code">FX</span><span class="md-cat">AI Equipment Diagnostics</span></div>
+                <div class="md-badge"><span class="md-dot"></span><span class="md-cat">AI Mechanic</span></div>
                 <h3 class="md-title">Diagnose the machine before you call the shop.</h3>
-                <p class="md-desc">FX is an AI diagnostic built for operators. Describe what the machine is doing — the noise, the warning light, the way it's running — and FX works toward the likely cause. Plenty of issues turn out to be a quick fix the operator can handle on the spot. When it isn't, one tap escalates to the shop and opens an MX work order with the diagnosis already attached.</p>
+                <p class="md-desc">AI Mechanic is an AI diagnostic built for operators. Describe what the machine is doing — the noise, the warning light, the way it's running — and it works toward the likely cause. Plenty of issues turn out to be a quick fix the operator can handle on the spot. When it isn't, one tap escalates to the shop and opens an MX work order with the diagnosis already attached.</p>
                 <div class="md-feats">
                     <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Operator describes the symptom in plain language</div>
                     <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>AI suggests likely causes and quick field fixes</div>
@@ -1168,6 +1164,25 @@
             <div class="shot">
                 <div class="shot-chrome"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-url">/fx/diagnose</span></div>
                 <img src="screens/fx-diagnose.png" alt="FX diagnostic AI — clarifying questions, then a ranked diagnostic result with confidence and likely causes">
+
+            </div>
+        </div>
+
+        <!-- SX -->
+        <div class="module-dive m-sx rv">
+            <div class="md-text">
+                <div class="md-badge"><span class="md-dot"></span><span class="md-cat">Safety</span></div>
+                <h3 class="md-title">Every incident recorded. Every OSHA obligation covered.</h3>
+                <p class="md-desc">A full safety system — incident reporting, hazard and near-miss capture, corrective actions, and certification tracking with expiry validation. OSHA 300/301 records generate from your data with an audit trail, ready when the inspector arrives.</p>
+                <div class="md-feats">
+                    <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Incident, hazard, AHA/JHA, and near-miss reporting</div>
+                    <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>OSHA 300/301 with AI recordability assessment</div>
+                    <div class="md-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SDS library + certification expiry tracking</div>
+                </div>
+            </div>
+            <div class="shot">
+                <div class="shot-chrome"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-url">/sx/incidents</span></div>
+                <img src="screens/sx-incidents.png" alt="SX safety — the incident log with OSHA recordability flags, near-miss capture, and open investigation status">
 
             </div>
         </div>
@@ -1184,25 +1199,25 @@
 
     <div class="tissue-diagram">
         <div class="flow rv">
-            <div class="flow-node"><span class="flow-code n-fx">FX</span><span class="flow-label"><strong>AI diagnosis</strong>operator can't fix it in the field</span></div>
+            <div class="flow-node"><span class="flow-code n-fx">AI Mech</span><span class="flow-label"><strong>AI diagnosis</strong>operator can't fix it in the field</span></div>
             <div class="flow-arrow flow-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span class="flow-arrow-label">escalates</span></div>
-            <div class="flow-node"><span class="flow-code n-mx">MX</span><span class="flow-label"><strong>Work order</strong>created with the diagnosis attached</span></div>
+            <div class="flow-node"><span class="flow-code n-mx">Maint</span><span class="flow-label"><strong>Work order</strong>created with the diagnosis attached</span></div>
             <div class="flow-arrow" style="opacity:0;"></div>
             <div></div>
         </div>
 
         <div class="flow rv">
-            <div class="flow-node"><span class="flow-code n-ox">OX</span><span class="flow-label"><strong>Pour request</strong>being planned</span></div>
+            <div class="flow-node"><span class="flow-code n-ox">Ops</span><span class="flow-label"><strong>Pour request</strong>being planned</span></div>
             <div class="flow-arrow flow-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span class="flow-arrow-label">pulls live</span></div>
-            <div class="flow-node"><span class="flow-code n-cx">CX</span><span class="flow-label"><strong>Crew availability</strong>before it's approved</span></div>
+            <div class="flow-node"><span class="flow-code n-cx">Crew</span><span class="flow-label"><strong>Crew availability</strong>before it's approved</span></div>
             <div class="flow-arrow flow-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span class="flow-arrow-label">spawns</span></div>
-            <div class="flow-node"><span class="flow-code n-mx">MX</span><span class="flow-label"><strong>Work order</strong>if equipment needs it</span></div>
+            <div class="flow-node"><span class="flow-code n-mx">Maint</span><span class="flow-label"><strong>Work order</strong>if equipment needs it</span></div>
         </div>
 
         <div class="flow rv">
-            <div class="flow-node"><span class="flow-code n-mx">MX</span><span class="flow-label"><strong>Equipment readiness</strong>updated in the shop</span></div>
+            <div class="flow-node"><span class="flow-code n-mx">Maint</span><span class="flow-label"><strong>Equipment readiness</strong>updated in the shop</span></div>
             <div class="flow-arrow flow-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span class="flow-arrow-label">feeds back</span></div>
-            <div class="flow-node"><span class="flow-code n-ox">OX</span><span class="flow-label"><strong>Pour confidence</strong>reflects what's actually ready</span></div>
+            <div class="flow-node"><span class="flow-code n-ox">Ops</span><span class="flow-label"><strong>Pour confidence</strong>reflects what's actually ready</span></div>
             <div class="flow-arrow" style="opacity:0;"></div>
             <div></div>
         </div>
@@ -1233,12 +1248,17 @@
             <div class="shell-card rv">
                 <svg class="shell-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                 <div class="shell-name">Field Guide</div>
-                <div class="shell-desc">A construction reference library by task type, plus concrete and structural calculators.</div>
+                <div class="shell-desc">A construction reference library by task type, plus field calculators.</div>
             </div>
             <div class="shell-card rv">
                 <svg class="shell-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 <div class="shell-name">Contracts</div>
                 <div class="shell-desc">Purchase orders and subcontracts with line items, totals, status flow, and attachments. Role-gated.</div>
+            </div>
+            <div class="shell-card rv">
+                <svg class="shell-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                <div class="shell-name">Back Office</div>
+                <div class="shell-desc">Project administration and compliance records. Role-gated.</div>
             </div>
         </div>
 
